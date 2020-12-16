@@ -1,3 +1,6 @@
+'use strict';
+
+import { Cart } from "medusa";
 import BaseResource from "./base";
 import LineItemsResource from "./line-items";
 
@@ -5,9 +8,9 @@ class CartsResource extends BaseResource {
 
   public lineItems = new LineItemsResource(this.client);
 
-  create(cart) {
-    const path = `/carts`;
-    return this.client("POST", path, cart);
+  create(cart: Cart.CartCreateParams) {
+    const path = `/carts`
+    return this.client("POST", path, cart)
   }
 
   retrieve(id: string) {
