@@ -22,6 +22,8 @@ class Medusa {
     this.orders = new OrdersResource(this.client);
     this.shippingOptions = new ShippingOptionsResource(this.client);
     this.regions = new RegionsResource(this.client);
+
+    console.log("clients and resources:")
   }
 }
 
