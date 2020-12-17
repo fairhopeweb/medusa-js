@@ -2,20 +2,36 @@
   "name": "medusa-js",
   "version": "1.0.0",
   "description": "Client for Medusa Commerce Rest API",
-  "main": "index.ts",
+  "main": "./lib/src/index.js",
+  "types": "./lib/types/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "lint": "eslint . --ext .ts"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json"
   },
-  "author": "oliver@mrbltech.com",
+  "author": "mrbltech",
   "license": "ISC",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.9.1",
-    "@typescript-eslint/parser": "^4.9.1",
-    "axios": "^0.21.0",
-    "eslint": "^7.15.0",
-    "eslint-config-prettier": "^7.0.0",
-    "eslint-plugin-prettier": "^3.2.0",
+    "axios": "^0.21.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medusajs/medusa-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/medusajs/medusa-js/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.19",
+    "jest": "^26.6.3",
     "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.1.3"
   }
 }

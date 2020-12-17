@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es2017",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist"
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true
   },
-  "lib": ["es2017"],
-  "declaration": true
+  "include": ["src", "types"],
+  "exclude": ["node_modules", "**/__tests__/*"]
 }

@@ -1,19 +1,18 @@
-import axios, { AxiosInstance } from "axios";
-import { Config } from "./config";
+import axios, { AxiosInstance } from 'axios';
+import { Config } from './config';
+import { Medusa } from 'medusa'
 
-type Method = "DELETE" | "POST" | "GET"
 
 class Client {
-
-  private axiosClient_: AxiosInstance
+  private axiosClient: AxiosInstance;
 
   constructor(config: Config) {
-    this.axiosClient_ = axios.create({
-      baseURL: config.baseUrl
+    this.axiosClient = axios.create({
+      baseURL: config.baseUrl,
     });
   }
 
-  request(method: Method, path: string, payload: Object) {
+  request(method: Medusa.Method, path: string, payload: object) {
     const options = {
       method,
       withCredentials: true,
@@ -22,8 +21,8 @@ class Client {
       json: true,
     };
 
-    return this.axiosClient_(options);
+    return this.axiosClient(options);
   }
-};
+}
 
 export default Client;
