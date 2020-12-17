@@ -1,6 +1,6 @@
 'use strict';
 
-import { Cart } from "medusa";
+import { Medusa } from "medusa";
 import BaseResource from "./base";
 import LineItemsResource from "./line-items";
 
@@ -8,19 +8,19 @@ class CartsResource extends BaseResource {
 
   public lineItems = new LineItemsResource(this.client);
 
-  create(cart: Cart.CartCreateParams) {
+  create(param: Medusa.CartCreateParams): Promise<Medusa.Response<Medusa.Cart>> {
     const path = `/carts`
-    return this.client("POST", path, cart)
+    return this.client("POST", path, param)
   }
 
-  retrieve(id: string) {
+  retrieve(id: string): Promise<Medusa.Response<Medusa.Cart>>  {
     const path = `/carts/${id}`;
     return this.client("GET", path);
   }
 
-  update(id: string, update: any) {
+  update(id: string, param: Medusa.CartUpdateParams) {
     const path = `/carts/${id}`;
-    return this.client("POST", path, update);
+    return this.client("POST", path, param);
   }
 
   setShippingMethod(id: string, payload: any) {
@@ -47,6 +47,8 @@ class CartsResource extends BaseResource {
     const path = `/carts/${id}/payment-sessions`;
     return this.client("POST", path);
   }
+
+  
 }
 
 export default CartsResource;

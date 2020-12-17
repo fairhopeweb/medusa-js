@@ -1,8 +1,5 @@
 declare module 'medusa' {
-  namespace Cart {
-
-    namespace Cart { }
-    
+  namespace Medusa {
     interface Cart {
       _id: string
       regionId: string
