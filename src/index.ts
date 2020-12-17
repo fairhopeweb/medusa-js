@@ -1,10 +1,10 @@
-import Client from "./request";
-import { Config } from "./config";
-import CartsResource from "./resources/carts";
-import OrdersResource from "./resources/orders";
-import ProductsResource from "./resources/products";
-import RegionsResource from "./resources/regions";
-import ShippingOptionsResource from "./resources/shipping-options";
+import Client from './request';
+import { Config } from './config';
+import CartsResource from './resources/carts';
+import OrdersResource from './resources/orders';
+import ProductsResource from './resources/products';
+import RegionsResource from './resources/regions';
+import ShippingOptionsResource from './resources/shipping-options';
 
 class Medusa {
   private client;

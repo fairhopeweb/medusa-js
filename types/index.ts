@@ -1,6 +1,3 @@
-
-///<reference path='./resources/carts-resource.d.ts' />
-
 declare module 'medusa' {
   export namespace Medusa {
     interface RequestOptions {

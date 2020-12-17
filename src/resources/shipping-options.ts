@@ -1,24 +1,24 @@
-import BaseResource from "./base";
+import BaseResource from './base';
 
 class ShippingOptionsResource extends BaseResource {
-  list(query) {
+  list(query:string) {
     let path = `/shipping-options`;
-    if (typeof query === "string") {
+    if (typeof query === 'string') {
       path = `/shipping-options/${query}`;
     } else {
       const queryString = Object.entries(query).map(([key, value]) => {
         let val = value;
         if (Array.isArray(value)) {
-          val = value.join(",");
+          val = value.join(',');
         }
 
         return `${key}=${val}`;
       });
 
-      path = `/store/shipping-options?${queryString.join("&")}`;
+      path = `/store/shipping-options?${queryString.join('&')}`;
     }
 
-    return this.client("GET", path);
+    return this.client('GET', path);
   }
 }
 

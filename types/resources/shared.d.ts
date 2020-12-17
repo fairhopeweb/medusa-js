@@ -10,6 +10,8 @@ declare module 'medusa' {
       "A", "b"
     }
 
+    type Method = 'DELETE' | 'POST' | 'GET';
+
     interface Region {
       _id: string 
       taxRate: number

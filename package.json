@@ -2,8 +2,8 @@
   "name": "medusa-js",
   "version": "1.0.0",
   "description": "Client for Medusa Commerce Rest API",
-  "main": "./lib/src/index.ts",
-  "types": "./lib/types/index.ts",
+  "main": "./lib/src/index.js",
+  "types": "./lib/types/index.d.ts",
   "files": [
     "lib/**/*"
   ],
@@ -13,10 +13,17 @@
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json"
   },
-  "author": "oliver@mrbltech.com",
+  "author": "mrbltech",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medusajs/medusa-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/medusajs/medusa-js/issues"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
