@@ -8,13 +8,12 @@ class CartsResource extends BaseResource {
   public lineItems = new LineItemsResource(this.client);
 
   create(param: Medusa.CartCreateParams): Promise<Medusa.Response<Medusa.Cart>> {
-    const path = `/api/store/carts`;
-    console.log("this.client: ", this.client)
+    const path = `/store/carts`;
     return this.client.request('POST', path, param);
   }
 
   retrieve(id: string): Promise<Medusa.Response<Medusa.Cart>> {
-    const path = `/carts/${id}`;
+    const path = `/api/store/carts/${id}`;
     return this.client('GET', path);
   }
 

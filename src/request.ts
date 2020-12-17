@@ -20,9 +20,6 @@ class Client {
       data: payload,
       json: true,
     };
-    console.log("request options: ", options)
-    console.log("axios:  ", this.axiosClient)
-
 
     return this.axiosClient(options);
   }
