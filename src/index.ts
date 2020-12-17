@@ -7,12 +7,12 @@ import RegionsResource from "./resources/regions";
 import ShippingOptionsResource from "./resources/shipping-options";
 
 class Medusa {
-  private client: any;
-  public products: any;
-  public carts: any;
-  public orders: any;
-  public shippingOptions: any;
-  public regions: any;
+  private client;
+  public products;
+  public carts;
+  public orders;
+  public shippingOptions;
+  public regions;
 
   constructor(config: Config) {
     this.client = new Client(config);
