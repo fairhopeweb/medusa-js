@@ -1,6 +1,6 @@
 import BaseResource from './base';
-import { Image } from './shared';
-import VariantsResource from './variants';
+import { AsyncResult, Image } from './shared';
+import ProductVariantsResource, { ProductVariant } from './product-variants';
 
 export interface Product {
   _id: string
@@ -15,32 +15,40 @@ export interface Product {
   options: ProductOption[]
 }
 
-
-export interface ProductOption {
+interface ProductOption {
   id: string
   title: string 
   values: ProductOptionValue[]
 }
 
-export interface ProductOptionValue {
+interface ProductOptionValue {
   id?: string
   value?: string 
   option_id?: string
   option?: ProductOption
   variant_id?: string
-  variant?: string //TODO: Change to ProductVariant
+  variant?: ProductVariant
 }
 
 class ProductsResource extends BaseResource {
-  public variants = new VariantsResource(this.client);
+  public variants = new ProductVariantsResource(this.client);
 
-  retrieve(id: string) {
-    const path = `/products/${id}`;
+  /**
+   * @description Retrieves a single Product
+   * @param id is required
+   * @returns AsyncResult<Product>
+   */
+  retrieve(id: string): AsyncResult<Product>{
+    const path = `/store/products/${id}`;
     return this.client('GET', path);
   }
 
-  list() {
-    const path = `/products`;
+  /**
+   * @description Retrieves a list of products
+   * @returns AsyncResult<Product[]>
+   */
+  list(): AsyncResult<Product[]> {
+    const path = `/store/products`;
     return this.client('GET', path);
   }
 }

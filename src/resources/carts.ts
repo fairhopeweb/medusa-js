@@ -1,10 +1,12 @@
 'use strict';
 
 import BaseResource from './base';
-import LineItemsResource, { Item } from './line-items';  
+import LineItemsResource, { Item } from './line-items';
 import { PaymentOption } from './payment';
-import { Discount, Method, PaymentSession, Region, Response, AsyncResult, ShippingAddress, ShippingMethod } from './shared';
+import { AsyncResult, PaymentSession, Region, ShippingAddress,  } from './shared';
+import { ShippingMethod } from './shipping-method';
 import { ShippingOption } from './shipping-options';
+import { Discount } from './discount'
 
 export interface Cart {
   _id: string

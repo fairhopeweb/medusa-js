@@ -1,8 +1,9 @@
 
 import BaseResource from './base';
 import { Product } from './products';
+import { AsyncResult } from './shared';
 
-export interface Variant {
+export interface ProductVariant {
   _id: string
   barcode?: string
   image?: string
@@ -35,16 +36,27 @@ export interface VariantMetadata {
   origin_country: string
 }
 
-class VariantsResource extends BaseResource {
-  retrieve(id: string) {
-    const path = `/variants/${id}`;
+class ProductVariantsResource extends BaseResource {
+  /**
+   * @description Retrieves a single product variant
+   * @param id is required
+   * @returns AsyncResult<ProductVariant> TODO: double check
+   */
+  retrieve(id: string): AsyncResult<ProductVariant>  {
+    const path = `/store/product-variants/${id}`;
     return this.client('GET', path);
   }
 
-  list(params = {}) {
+  /**
+   * @description Retrieves a list of of Product Variants
+   * @param params ids is optional and used to return a specific list of Product Variants
+   * @returns AsyncResult<ProductVariant[]>
+   */
+
+  list(ids?: string[]) : AsyncResult<ProductVariant[]> {
     const path = `/variants`;
 
-    const search = Object.entries(params).map(([key, value]) => {
+    const search = Object.entries(ids).map(([key, value]) => {
       if (Array.isArray(value)) {
         return `${key}=${value.join(',')}`;
       }
@@ -56,4 +68,4 @@ class VariantsResource extends BaseResource {
   }
 }
 
-export default VariantsResource;
+export default ProductVariantsResource;
