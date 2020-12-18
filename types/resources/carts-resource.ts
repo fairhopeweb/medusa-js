@@ -1,6 +1,6 @@
-declare module 'medusa' {
+declare module 'medusa-js' {
   namespace Types {
-    export interface Cart {
+    interface Cart {
       _id: string
       region_id: string
       items: Types.Item[]

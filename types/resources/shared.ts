@@ -1,4 +1,4 @@
-declare module 'medusa' {
+declare module 'medusa-js' {
   namespace Types {
     enum PaymentProvidersEnum {
       "stripe", "klarna"

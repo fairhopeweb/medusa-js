@@ -1,6 +1,4 @@
-import ProductsResource from "../../src/resources/products";
-
-declare module 'medusa' {
+declare module 'medusa-js' {
   namespace Types {
     interface Product {
       _id: string

@@ -1,12 +1,12 @@
 'use strict';
-import {Types} from 'medusa'
+import { Types } from 'medusa-js'
 import BaseResource from './base';
 import LineItemsResource from './line-items';  
   
   class CartsResource extends BaseResource {
     public lineItems = new LineItemsResource(this.client);
     
-    create(param: Types.CartCreateParams): Promise<Types.Response<Types.Cart>> {
+    create(param: Types.Cart): Promise<Types.Response<Types.Cart>> {
       const path = `/store/carts`;
       return this.client.request('POST', path, param);
     }
