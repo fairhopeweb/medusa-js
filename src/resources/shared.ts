@@ -9,7 +9,7 @@ export type Response<T> = T & {
   };
 };
 
-export type Result<T> = Promise<Response<T>>
+export type AsyncResult<T> = Promise<Response<T>>
 
 export enum PaymentProvidersEnum {
 "stripe", "klarna"
