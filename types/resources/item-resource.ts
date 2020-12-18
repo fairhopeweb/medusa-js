@@ -1,5 +1,5 @@
 declare module 'medusa' {
-  namespace Medusa {
+  namespace Types {
     interface Item {
       id: string
       variant_id: string;

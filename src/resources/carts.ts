@@ -1,23 +1,22 @@
 'use strict';
-
-import { Medusa } from 'medusa';
+import {Types} from 'medusa'
 import BaseResource from './base';
-import LineItemsResource from './line-items';
+import LineItemsResource from './line-items';  
+  
+  class CartsResource extends BaseResource {
+    public lineItems = new LineItemsResource(this.client);
+    
+    create(param: Types.CartCreateParams): Promise<Types.Response<Types.Cart>> {
+      const path = `/store/carts`;
+      return this.client.request('POST', path, param);
+    }
+    
+    retrieve(id: string): Promise<Types.Response<Types.Cart>> {
+      const path = `/store/carts/${id}`;
+      return this.client('GET', path);
+    }
 
-class CartsResource extends BaseResource {
-  public lineItems = new LineItemsResource(this.client);
-
-  create(param: Medusa.CartCreateParams): Promise<Medusa.Response<Medusa.Cart>> {
-    const path = `/store/carts`;
-    return this.client.request('POST', path, param);
-  }
-
-  retrieve(id: string): Promise<Medusa.Response<Medusa.Cart>> {
-    const path = `/store/carts/${id}`;
-    return this.client('GET', path);
-  }
-
-  update(id: string, param: Medusa.CartUpdateParams) {
+  update(id: string, param: Types.CartUpdateParams) {
     const path = `store/carts/${id}`;
     return this.client('POST', path, param);
   }
@@ -27,7 +26,7 @@ class CartsResource extends BaseResource {
     return this.client('POST', path, payload);
   }
 
-  setPaymentMethod(id: string, method: Medusa.Method) {
+  setPaymentMethod(id: string, method: Types.Method) {
     const path = `/store/carts/${id}/payment-method`;
     return this.client('POST', path, method);
   }

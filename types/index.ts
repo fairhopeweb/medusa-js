@@ -1,5 +1,5 @@
 declare module 'medusa' {
-    namespace Medusa {
+    namespace Types {
         interface RequestOptions {
             apiKey?: string;
             timeout?: number;
@@ -16,6 +16,6 @@ declare module 'medusa' {
     }
     class Medusa {
         constructor(config: MedusaConfig);
-        carts: Medusa.CartsResource;
+        carts: Types.CartsResource;
     }
 }

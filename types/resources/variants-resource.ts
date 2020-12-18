@@ -1,5 +1,5 @@
 declare module 'medusa' {
-  namespace Medusa {
+  namespace Types {
     interface Variant {
       _id: string
       barcode?: string
@@ -14,7 +14,7 @@ declare module 'medusa' {
       options?: VariantOption[]
       prices?: VariantPrice[]
       metadata?: VariantMetadata
-      product?: Medusa.Product
+      product?: Types.Product
     }
   }
   interface VariantOption {

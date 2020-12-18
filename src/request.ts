@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { Medusa } from 'medusa'
+
 
 export interface Config {
   baseUrl: string
@@ -14,7 +14,7 @@ class Client {
     });
   }
 
-  request(method: Medusa.Method, path: string, payload: object) {
+  request(method: string, path: string, payload: object) {
     const options = {
       method,
       withCredentials: true,
@@ -23,7 +23,7 @@ class Client {
       json: true,
     };
 
-    return this.axiosClient(options);
+    //return this.axiosClient(options);
   }
 }
 

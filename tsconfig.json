@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    // Ensure that .d.ts files are created by tsc, but not .js files
-
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2017", "es7", "es6", "dom"],
+    "declaration": true,
+    "outDir": "lib/"
   },
   "include": ["src/**/*", "types/**/*"],
-  "exclude": ["node_modules", "**/tests/*"]
+  "exclude": ["node_modules", " **/tests/*"]
 }

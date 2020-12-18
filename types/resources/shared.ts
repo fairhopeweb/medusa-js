@@ -1,5 +1,5 @@
 declare module 'medusa' {
-  namespace Medusa {
+  namespace Types {
     enum PaymentProvidersEnum {
       "stripe", "klarna"
     }

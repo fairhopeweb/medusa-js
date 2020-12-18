@@ -1,13 +1,13 @@
 import ProductsResource from "../../src/resources/products";
 
 declare module 'medusa' {
-  namespace Medusa {
+  namespace Types {
     interface Product {
       _id: string
       description: string 
       tags: string 
       is_giftcard: boolean
-      images: Medusa.Image[]
+      images: Types.Image[]
       thumbnail: string
       variants: string[]
       published: boolean
