@@ -1,7 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import { Config } from './config';
 import { Medusa } from 'medusa'
 
+export interface Config {
+  baseUrl: string
+}
 
 class Client {
   private axiosClient: AxiosInstance;

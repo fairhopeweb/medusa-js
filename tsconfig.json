@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
-    "outDir": "./lib",
-    "strict": true
+    // Ensure that .d.ts files are created by tsc, but not .js files
+
   },
-  "include": ["src", "types"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "include": ["src/**/*", "types/**/*"],
+  "exclude": ["node_modules", "**/tests/*"]
 }

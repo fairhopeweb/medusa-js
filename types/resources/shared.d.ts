@@ -14,22 +14,61 @@ declare module 'medusa' {
 
     interface Region {
       _id: string 
-      taxRate: number
+      tax_rate: number
       countries: string[]
-      paymentProviders: PaymentProvidersEnum[]
-      fulfillmentProviders: FulfilmentProvidersEnum[]
+      payment_providers: PaymentProvidersEnum[]
+      fulfillment_providers: FulfilmentProvidersEnum[]
       name: string
-      currencyCode: string
-      taxCode: string
+      currency_code: string
+      tax_code: string
     }
 
-    interface ShippingAddress {
-      _id: string
-      countryCode: string
+    interface Address {
+      id: string,
+      customer_id: string,
+      company: string ,
+      first_name: string,
+      last_name: string,
+      address_1: string 
+      address_2: string
+      city: string 
+      country_code: string
+      province: string
+      postal_code: number,
+      phone: string,
+      created_at: string,
+      updated_at: string,
+      deleted_at: null | string,
+      metadata: null | string 
     }
+
+    interface ShippingAddress extends Address { }
+    interface BillingAddress extends Address {}
 
     interface ShippingMethods {
-      method: ShippingMethodsEnum
+      id: string
+      shipping_option_id: string 
+      order_id: string 
+      cart_id: null | string
+      swap_id: null | string 
+      return_id: null | string 
+      price: number 
+      data: ShippingData
+    }
+
+    interface ShippingData {
+      id: string 
+      city: string 
+      postal: string
+    }
+
+    interface Image {
+      id?: string
+      url?: string
+      created_at?: string
+      updated_at?: string
+      deleted_at?: string
+      metedata?: object
     }
     
     interface Discount {

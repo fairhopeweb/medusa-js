@@ -13,37 +13,37 @@ class CartsResource extends BaseResource {
   }
 
   retrieve(id: string): Promise<Medusa.Response<Medusa.Cart>> {
-    const path = `/api/store/carts/${id}`;
+    const path = `/store/carts/${id}`;
     return this.client('GET', path);
   }
 
   update(id: string, param: Medusa.CartUpdateParams) {
-    const path = `/carts/${id}`;
+    const path = `store/carts/${id}`;
     return this.client('POST', path, param);
   }
 
   setShippingMethod(id: string, payload: any) {
-    const path = `/carts/${id}/shipping-methods`;
+    const path = `/store/carts/${id}/shipping-methods`;
     return this.client('POST', path, payload);
   }
 
   setPaymentMethod(id: string, method: Medusa.Method) {
-    const path = `/carts/${id}/payment-method`;
+    const path = `/store/carts/${id}/payment-method`;
     return this.client('POST', path, method);
   }
 
   clearPaymentSession(id: string, providerId:number) {
-    const path = `/carts/${id}/payment-sessions/${providerId}`;
+    const path = `/store/carts/${id}/payment-sessions/${providerId}`;
     return this.client('DELETE', path);
   }
 
   updatePaymentSession(id: string, providerId:number, data:object) {
-    const path = `/carts/${id}/payment-sessions/${providerId}`;
+    const path = `/store/carts/${id}/payment-sessions/${providerId}`;
     return this.client('POST', path, data);
   }
 
   createPaymentSessions(id: string) {
-    const path = `/carts/${id}/payment-sessions`;
+    const path = `/store/carts/${id}/payment-sessions`;
     return this.client('POST', path);
   }
 }
