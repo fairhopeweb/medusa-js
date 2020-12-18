@@ -2,7 +2,9 @@
 
 import BaseResource from './base';
 import LineItemsResource, { Item } from './line-items';  
-import { Discount, Method, PaymentSession, Region, Response, ShippingAddress, ShippingMethods } from './shared';
+import { PaymentOption } from './payment';
+import { Discount, Method, PaymentSession, Region, Response, Result, ShippingAddress, ShippingMethod } from './shared';
+import { ShippingOption } from './shipping-options';
 
 export interface Cart {
   _id: string
@@ -13,7 +15,7 @@ export interface Cart {
   shipping_address: ShippingAddress
   discounts: Discount[]
   payment_session: PaymentSession
-  shipping_methods: ShippingMethods
+  shipping_methods: ShippingMethod
   shipping_total: number
   discount_total: number
   tax_total: number
@@ -22,12 +24,12 @@ export interface Cart {
   region: Region
 }
 
-export interface CartCreateParams {
+export interface CartCreatePayload {
   region_id?: string
   items?: Item[]
 }
 
-export interface CartUpdateParams {
+export interface CartUpdatePayload {
   id: string 
   region_id?: string 
   email?: string
@@ -35,51 +37,50 @@ export interface CartUpdateParams {
   shipping_addres?: ShippingAddress
 }
 
-export interface CartRetrieveParams {
+export interface CartRetrievePayload {
   id: string
-
 }
 
 class CartsResource extends BaseResource {
   public lineItems = new LineItemsResource(this.client);
   
-  create(param: CartCreateParams): Promise<Response<Cart>> {
+  create(payload?: CartCreatePayload): Result<Cart> {
     const path = `/store/carts`;
-    return this.client.request('POST', path, param);
+    return this.client.request('POST', path, payload);
   }
   
-  retrieve(id: string): Promise<Response<Cart>> {
-    const path = `/store/carts/${id}`;
+  retrieve(cart_id: string): Result<Cart> {
+    const path = `/store/carts/${cart_id}`;
     return this.client('GET', path);
   }
 
-  update(id: string, param: CartUpdateParams) {
-    const path = `store/carts/${id}`;
-    return this.client('POST', path, param);
-  }
-
-  setShippingMethod(id: string, payload: any) {
-    const path = `/store/carts/${id}/shipping-methods`;
+  update(cart_id: string, payload: CartUpdatePayload): Result<Cart> {
+    const path = `store/carts/${cart_id}`;
     return this.client('POST', path, payload);
   }
 
-  setPaymentMethod(id: string, method: Method) {
-    const path = `/store/carts/${id}/payment-method`;
-    return this.client('POST', path, method);
+  setShippingMethod(cart_id: string, payload: ShippingOption): Result<Cart> {
+    const path = `/store/carts/${cart_id}/shipping-methods`;
+    return this.client('POST', path, payload);
   }
 
-  clearPaymentSession(id: string, providerId:number) {
-    const path = `/store/carts/${id}/payment-sessions/${providerId}`;
+  setPaymentMethod(cart_id: string, payload: PaymentOption): Result<Cart> {
+    const path = `/store/carts/${cart_id}/payment-method`;
+    return this.client('POST', path, payload);
+  }
+
+  clearPaymentSession(cart_id: string, provider_id:number): Result<Cart>  {
+    const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`;
     return this.client('DELETE', path);
   }
 
-  updatePaymentSession(id: string, providerId:number, data:object) {
-    const path = `/store/carts/${id}/payment-sessions/${providerId}`;
+  updatePaymentSession(cart_id: string, provider_id:number, data:object): Result<Cart> {
+    const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`;
     return this.client('POST', path, data);
   }
 
-  createPaymentSessions(id: string) {
-    const path = `/store/carts/${id}/payment-sessions`;
+  createPaymentSessions(cart_id: string): Result<Cart> {
+    const path = `/store/carts/${cart_id}/payment-sessions`;
     return this.client('POST', path);
   }
 }

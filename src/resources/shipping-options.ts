@@ -1,5 +1,10 @@
 import BaseResource from './base';
 
+export interface ShippingOption {
+  option_id: string
+  data?: object //TODO: find correct format
+}
+
 class ShippingOptionsResource extends BaseResource {
   list(query:string) {
     let path = `/shipping-options`;

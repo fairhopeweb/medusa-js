@@ -9,6 +9,8 @@ export type Response<T> = T & {
   };
 };
 
+export type Result<T> = Promise<Response<T>>
+
 export enum PaymentProvidersEnum {
 "stripe", "klarna"
 }
@@ -54,7 +56,7 @@ interface Address {
 export interface ShippingAddress extends Address { }
 export interface BillingAddress extends Address {}
 
-export interface ShippingMethods {
+export interface ShippingMethod {
   id: string
   shipping_option_id: string 
   order_id: string 

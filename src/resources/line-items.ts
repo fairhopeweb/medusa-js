@@ -1,4 +1,6 @@
 import BaseResource from './base';
+import { Cart } from './carts';
+import { Response } from './shared';
 
 export interface Item {
   id: string
@@ -15,25 +17,36 @@ export interface Item {
   thumbnail?: string 
 }
 
-export interface LineItemCreateParams {
+export interface LineItemCreatePayload {
   id: string
   variant_id: string
   quanitity: number
 }
 
+export interface LineItemUpdatePayload {
+  id: string
+  line_id: string
+  quantity?: number
+}
+
+export interface LineItemDeletePayload {
+  id: string
+  line_id: string
+}
+
 class LineItemsResource extends BaseResource {
-  create(id: string, payload: object) {
-    const path = `/${id}/line-items`;
+  create(cart_id: string, payload: LineItemCreatePayload) : Promise<Response<Cart>> {
+    const path = `/${cart_id}/line-items`;
     return this.client('POST', path, payload);
   }
 
-  update(cartId: string, lineItemId: string, payload:object) {
-    const path = `/carts/${cartId}/line-items/${lineItemId}`;
+  update(cart_id: string, line_id: string, payload: LineItemUpdatePayload): Promise<Response<Cart>> {
+    const path = `/carts/${cart_id}/line-items/${line_id}`;
     return this.client('POST', path, payload);
   }
 
-  delete(cartId: string, lineItemId: string) {
-    const path = `/carts/${cartId}/line-items/${lineItemId}`;
+  delete(cart_id: string, line_id: string): Promise<Response<Cart>> {
+    const path = `/carts/${cart_id}/line-items/${line_id}`;
     return this.client('DELETE', path);
   }
 }
