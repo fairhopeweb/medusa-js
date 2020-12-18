@@ -2,7 +2,7 @@ import BaseResource from './base';
 import { Discount } from './discount';
 import { Fulfillment } from './fulfillment';
 import { GiftCard } from './giftcard';
-import { Item } from './line-items';
+import { LineItem } from './line-items';
 import { Payment } from './payment';
 import { Refund } from './refund';
 import { Return } from './return';
@@ -62,7 +62,7 @@ export interface Order {
   returns: Return[];
   refunds: Refund[];
   swaps: Swap[];
-  items: Item[];
+  items: LineItem[];
   canceled_at: Date | null;
   created_at: Date | null;
   updated_at: Date | null;

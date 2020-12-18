@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
-
+import { RequestMethod } from './resources/shared';
 
 export interface Config {
-  baseUrl: string
+  baseUrl: string;
 }
 
 class Client {
@@ -14,7 +14,7 @@ class Client {
     });
   }
 
-  request(method: string, path: string, payload: object) {
+  request(method: RequestMethod, path: string, payload: object) {
     const options = {
       method,
       withCredentials: true,
@@ -23,7 +23,7 @@ class Client {
       json: true,
     };
 
-    //return this.axiosClient(options);
+    return this.axiosClient(options);
   }
 }
 
