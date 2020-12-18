@@ -1,5 +1,26 @@
 import BaseResource from './base';
 
+export interface Item {
+  id: string
+  variant_id: string;
+  quanitity: number;
+  is_giftcard?: boolean
+  has_shipping?: boolean
+  returned?: boolean
+  fulfilled?: boolean
+  fulfilled_quanitity?: boolean
+  returned_quanitity?: boolean
+  title?: string
+  description?: string
+  thumbnail?: string 
+}
+
+export interface LineItemCreateParams {
+  id: string
+  variant_id: string
+  quanitity: number
+}
+
 class LineItemsResource extends BaseResource {
   create(id: string, payload: object) {
     const path = `/${id}/line-items`;
