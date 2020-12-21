@@ -3,21 +3,32 @@
  * MedusaError is the base error for every other MedusaError
  */
 export default class MedusaError extends Error {
-  public MedusaAPIError: MedusaAPIError;
-  public MedusaInvalidRequestError: MedusaInvalidRequestError;
-  public MedusaAuthenticationError: MedusaAuthenticationError;
-  public MedusaPermissionErorr: MedusaPermissionError;
-  public MedusaConnectionError: MedusaConnectionError;
-
   constructor() {
     super();
-
-    this.MedusaAPIError = new MedusaAPIError();
-    this.MedusaInvalidRequestError = new MedusaInvalidRequestError();
-    this.MedusaAuthenticationError = new MedusaAuthenticationError();
-    this.MedusaPermissionErorr = new MedusaPermissionError();
-    this.MedusaConnectionError = new MedusaConnectionError();
   }
+
+  public static factory(type: ErrorType): MedusaError {
+    switch (type) {
+      case ErrorType.INVALID_REQUEST:
+        return new MedusaInvalidRequestError();
+      case ErrorType.AUTHENTICATION:
+        return new MedusaAuthenticationError();
+      case ErrorType.API:
+        return new MedusaAPIError();
+      case ErrorType.PERMISSION:
+        return new MedusaPermissionError();
+      case ErrorType.CONNECTION:
+        return new MedusaConnectionError();
+    }
+  }
+}
+
+enum ErrorType {
+  'INVALID_REQUEST',
+  'API',
+  'AUTHENTICATION',
+  'PERMISSION',
+  'CONNECTION',
 }
 
 /**

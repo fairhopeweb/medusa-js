@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import { RequestMethod } from './resources/shared';
 
 export interface Config {
   baseUrl: string;
@@ -14,7 +13,7 @@ class Client {
     });
   }
 
-  request(method: RequestMethod, path: string, payload: object) {
+  request(method: Types.RequestMethod, path: string, payload: object) {
     const options = {
       method,
       withCredentials: true,
