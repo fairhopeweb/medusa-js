@@ -2,8 +2,8 @@
   "name": "medusa-js",
   "version": "1.0.0",
   "description": "Client for Medusa Commerce Rest API",
-  "main": "./lib/src/index.js",
-  "types": "./lib/types/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],

@@ -79,7 +79,7 @@ class OrdersResource extends BaseResource {
    */
   create(cart_id: string): AsyncResult<Order> {
     const path = `/orders`;
-    return this.client('POST', path, cart_id);
+    return this.client.request('POST', path, cart_id);
   }
 
   /**
@@ -89,7 +89,7 @@ class OrdersResource extends BaseResource {
    */
   retrieve(id: string): AsyncResult<Order> {
     const path = `/orders/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 

@@ -42,17 +42,17 @@ export interface LineItemUpdatePayload {
 class LineItemsResource extends BaseResource {
   create(cart_id: string, payload: LineItemCreatePayload): Promise<Response<Cart>> {
     const path = `/store/carts/${cart_id}/line-items`;
-    return this.client('POST', path, payload);
+    return this.client.request('POST', path, payload);
   }
 
   update(cart_id: string, line_id: string, payload: LineItemUpdatePayload): Promise<Response<Cart>> {
     const path = `/store/carts/${cart_id}/line-items/${line_id}`;
-    return this.client('POST', path, payload);
+    return this.client.request('POST', path, payload);
   }
 
   delete(cart_id: string, line_id: string): Promise<Response<Cart>> {
     const path = `/store/carts/${cart_id}/line-items/${line_id}`;
-    return this.client('DELETE', path);
+    return this.client.request('DELETE', path);
   }
 }
 

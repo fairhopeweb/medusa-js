@@ -26,7 +26,7 @@ class RegionsResource extends BaseResource {
    */
   list(): AsyncResult<Region[]> {
     const path = `/store/regions`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 
   /**
@@ -36,7 +36,7 @@ class RegionsResource extends BaseResource {
    */
   retrieve(id: string): AsyncResult<Region> {
     const path = `/store/regions/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 

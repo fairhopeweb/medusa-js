@@ -42,7 +42,7 @@ class ProductVariantsResource extends BaseResource {
    */
   retrieve(id: string): AsyncResult<ProductVariant> {
     const path = `/store/product-variants/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 
   /**
@@ -62,7 +62,7 @@ class ProductVariantsResource extends BaseResource {
       return `${key}=${value}`;
     });
 
-    return this.client('GET', `${path}${search.length > 0 && `?${search.join('&')}`}`);
+    return this.client.request('GET', `${path}${search.length > 0 && `?${search.join('&')}`}`);
   }
 }
 

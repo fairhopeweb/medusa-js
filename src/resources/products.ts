@@ -3,44 +3,44 @@ import { AsyncResult, Image } from './shared';
 import ProductVariantsResource, { ProductVariant } from './product-variants';
 
 export interface Product {
-  _id: string
-  description: string 
-  tags: string 
-  is_giftcard: boolean
-  images: Image[]
-  thumbnail: string
-  variants: string[]
-  published: boolean
-  title: string
-  options: ProductOption[]
+  _id: string;
+  description: string;
+  tags: string;
+  is_giftcard: boolean;
+  images: Image[];
+  thumbnail: string;
+  variants: string[];
+  published: boolean;
+  title: string;
+  options: ProductOption[];
 }
 
 interface ProductOption {
-  id: string
-  title: string 
-  values: ProductOptionValue[]
+  id: string;
+  title: string;
+  values: ProductOptionValue[];
 }
 
 interface ProductOptionValue {
-  id?: string
-  value?: string 
-  option_id?: string
-  option?: ProductOption
-  variant_id?: string
-  variant?: ProductVariant
+  id?: string;
+  value?: string;
+  option_id?: string;
+  option?: ProductOption;
+  variant_id?: string;
+  variant?: ProductVariant;
 }
 
 class ProductsResource extends BaseResource {
-  public variants = new ProductVariantsResource(this.client);
+  public variants = new ProductVariantsResource(this.client.request);
 
   /**
    * @description Retrieves a single Product
    * @param id is required
    * @returns AsyncResult<Product>
    */
-  retrieve(id: string): AsyncResult<Product>{
+  retrieve(id: string): AsyncResult<Product> {
     const path = `/store/products/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 
   /**
@@ -49,7 +49,7 @@ class ProductsResource extends BaseResource {
    */
   list(): AsyncResult<Product[]> {
     const path = `/store/products`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 

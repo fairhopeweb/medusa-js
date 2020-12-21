@@ -34,7 +34,7 @@ const baseUrl = '/store/swaps';
 class SwapResource extends BaseResource {
   retrieve(id: string): AsyncResult<Swap> {
     const path = `${baseUrl}/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 

@@ -47,7 +47,7 @@ export interface CartUpdatePayload {
 }
 
 class CartsResource extends BaseResource {
-  public lineItems = new LineItemsResource(this.client);
+  public lineItems = new LineItemsResource(this.client.request);
 
   /**
    * Creates a cart
@@ -67,7 +67,7 @@ class CartsResource extends BaseResource {
    */
   retrieve(cart_id: string): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 
   /**
@@ -78,7 +78,7 @@ class CartsResource extends BaseResource {
    */
   update(cart_id: string, payload: CartUpdatePayload): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}`;
-    return this.client('POST', path, payload);
+    return this.client.request('POST', path, payload);
   }
 
   /**
@@ -89,7 +89,7 @@ class CartsResource extends BaseResource {
    */
   setShippingMethod(cart_id: string, payload: ShippingOption): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}/shipping-methods`;
-    return this.client('POST', path, payload);
+    return this.client.request('POST', path, payload);
   }
 
   /**
@@ -100,7 +100,7 @@ class CartsResource extends BaseResource {
    */
   setPaymentMethod(cart_id: string, payload: PaymentOption): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}/payment-method`;
-    return this.client('POST', path, payload);
+    return this.client.request('POST', path, payload);
   }
 
   /**
@@ -111,7 +111,7 @@ class CartsResource extends BaseResource {
    */
   clearPaymentSession(cart_id: string, provider_id: number): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`;
-    return this.client('DELETE', path);
+    return this.client.request('DELETE', path);
   }
 
   /**
@@ -124,7 +124,7 @@ class CartsResource extends BaseResource {
    */
   updatePaymentSession(cart_id: string, provider_id: number, data: object): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`;
-    return this.client('POST', path, data);
+    return this.client.request('POST', path, data);
   }
 
   /**
@@ -136,7 +136,7 @@ class CartsResource extends BaseResource {
    */
   createPaymentSessions(cart_id: string): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}/payment-sessions`;
-    return this.client('POST', path);
+    return this.client.request('POST', path);
   }
 
   /**
@@ -147,7 +147,7 @@ class CartsResource extends BaseResource {
    */
   deletePaymentSession(cart_id: string, provider_id: string): AsyncResult<Cart> {
     const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`;
-    return this.client('DELETE', path);
+    return this.client.request('DELETE', path);
   }
 }
 

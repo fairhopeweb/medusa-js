@@ -7,6 +7,7 @@ import ProductsResource from './resources/products';
 import RegionsResource from './resources/regions';
 import ShippingOptionsResource from './resources/shipping-options';
 import SwapResource from './resources/swap';
+import MedusaError from './error';
 
 class Medusa {
   private client: Client;
