@@ -77,7 +77,7 @@ class CartsResource extends BaseResource {
    * @returns AsyncResult<Cart>
    */
   update(cart_id: string, payload: CartUpdatePayload): AsyncResult<Cart> {
-    const path = `store/carts/${cart_id}`;
+    const path = `/store/carts/${cart_id}`;
     return this.client('POST', path, payload);
   }
 

@@ -1,48 +1,46 @@
-
 import BaseResource from './base';
 import { Product } from './products';
 import { AsyncResult } from './shared';
 
 export interface ProductVariant {
-  _id: string
-  barcode?: string
-  image?: string
-  published?: boolean
-  inventory_quanitity?: number
-  allow_backorder?: boolean
-  manage_inventory?: boolean
-  title?: string
-  sku?: string 
-  ean?: string
-  options?: VariantOption[]
-  prices?: VariantPrice[]
-  metadata?: VariantMetadata
-  product?: Product
-
+  _id: string;
+  barcode?: string;
+  image?: string;
+  published?: boolean;
+  inventory_quanitity?: number;
+  allow_backorder?: boolean;
+  manage_inventory?: boolean;
+  title?: string;
+  sku?: string;
+  ean?: string;
+  options?: VariantOption[];
+  prices?: VariantPrice[];
+  metadata?: VariantMetadata;
+  product?: Product;
 }
 export interface VariantOption {
-  _id: string 
-  value: string 
-  option_id: string
+  _id: string;
+  value: string;
+  option_id: string;
 }
 
 export interface VariantPrice {
-  _id: string
-  currency_code: string
-  amount: number
+  _id: string;
+  currency_code: string;
+  amount: number;
 }
 
 export interface VariantMetadata {
-  origin_country: string
+  origin_country: string;
 }
 
 class ProductVariantsResource extends BaseResource {
   /**
    * @description Retrieves a single product variant
    * @param id is required
-   * @returns AsyncResult<ProductVariant> TODO: double check
+   * @returns AsyncResult<ProductVariant> TODO: double check, Docs says Region?
    */
-  retrieve(id: string): AsyncResult<ProductVariant>  {
+  retrieve(id: string): AsyncResult<ProductVariant> {
     const path = `/store/product-variants/${id}`;
     return this.client('GET', path);
   }
@@ -53,7 +51,7 @@ class ProductVariantsResource extends BaseResource {
    * @returns AsyncResult<ProductVariant[]>
    */
 
-  list(ids?: string[]) : AsyncResult<ProductVariant[]> {
+  list(ids?: string[]): AsyncResult<ProductVariant[]> {
     const path = `/variants`;
 
     const search = Object.entries(ids).map(([key, value]) => {

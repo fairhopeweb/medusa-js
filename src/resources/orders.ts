@@ -50,7 +50,9 @@ export interface Order {
   customer_id: string;
   email: string;
   billing_address_id: string;
+  billing_address: BillingAddress;
   shipping_address_id: string | null;
+  shipping_address: ShippingAddress;
   region_id: string;
   currency_code: string;
   tax_rate: number;
@@ -80,6 +82,11 @@ class OrdersResource extends BaseResource {
     return this.client('POST', path, cart_id);
   }
 
+  /**
+   * @description Retrieves an order
+   * @param id is required
+   * @returns AsyncResult<Order>
+   */
   retrieve(id: string): AsyncResult<Order> {
     const path = `/orders/${id}`;
     return this.client('GET', path);

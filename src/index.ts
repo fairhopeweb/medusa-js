@@ -7,12 +7,13 @@ import RegionsResource from './resources/regions';
 import ShippingOptionsResource from './resources/shipping-options';
 
 class Medusa {
-  private client : Client;
-  public products : ProductsResource;
-  public carts : CartsResource;
-  public orders : OrdersResource;
-  public shippingOptions : ShippingOptionsResource;
-  public regions : RegionsResource;
+  private client: Client;
+  public products: ProductsResource;
+  public carts: CartsResource;
+  public orders: OrdersResource;
+  public shippingOptions: ShippingOptionsResource;
+  public regions: RegionsResource;
+  public errors: MedusaError;
 
   constructor(config: Config) {
     this.client = new Client(config);
@@ -22,6 +23,7 @@ class Medusa {
     this.orders = new OrdersResource(this.client);
     this.shippingOptions = new ShippingOptionsResource(this.client);
     this.regions = new RegionsResource(this.client);
+    this.errors = new MedusaError();
   }
 }
 
