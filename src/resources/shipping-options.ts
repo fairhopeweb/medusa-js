@@ -1,7 +1,7 @@
 import BaseResource from './base';
 
 class ShippingOptionsResource extends BaseResource {
-  list(query:string) {
+  list(query: string): Types.AsyncResult<Types.ShippingOption[]> {
     let path = `/shipping-options`;
     if (typeof query === 'string') {
       path = `/shipping-options/${query}`;
@@ -18,7 +18,7 @@ class ShippingOptionsResource extends BaseResource {
       path = `/store/shipping-options?${queryString.join('&')}`;
     }
 
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 

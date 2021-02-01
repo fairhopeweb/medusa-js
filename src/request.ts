@@ -1,7 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
-import { Config } from './config';
-import { Medusa } from 'medusa'
 
+export interface Config {
+  baseUrl: string;
+}
 
 class Client {
   private axiosClient: AxiosInstance;
@@ -12,7 +13,7 @@ class Client {
     });
   }
 
-  request(method: Medusa.Method, path: string, payload: object) {
+  request(method: Types.RequestMethod, path: string, payload: object) {
     const options = {
       method,
       withCredentials: true,

@@ -1,14 +1,23 @@
 import BaseResource from './base';
 
 class RegionsResource extends BaseResource {
-  list() {
+  /**
+   * @description Retrieves a list of regions
+   * @returns AsyncResult<Region[]>
+   */
+  list(): Types.AsyncResult<Types.Region[]> {
     const path = `/store/regions`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 
-  retrieve(id:string) {
+  /**
+   * @description Retrieves a region
+   * @param id is required
+   * @returns AsyncResult<Region>
+   */
+  retrieve(id: string): Types.AsyncResult<Types.Region> {
     const path = `/store/regions/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 

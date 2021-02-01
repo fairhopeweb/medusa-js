@@ -1,14 +1,24 @@
 import BaseResource from './base';
 
 class OrdersResource extends BaseResource {
-  create(order: any) {
+  /**
+   * @description Creates an order
+   * @param cart_id is required
+   * @returns AsyncResult<Order>
+   */
+  create(cart_id: string): Types.AsyncResult<Types.Order> {
     const path = `/orders`;
-    return this.client('POST', path, order);
+    return this.client.request('POST', path, cart_id);
   }
 
-  retrieve(id: string) {
+  /**
+   * @description Retrieves an order
+   * @param id is required
+   * @returns AsyncResult<Order>
+   */
+  retrieve(id: string): Types.AsyncResult<Types.Order> {
     const path = `/orders/${id}`;
-    return this.client('GET', path);
+    return this.client.request('GET', path);
   }
 }
 
