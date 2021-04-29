@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import * as Types from './types';
 
 export interface Config {
   baseUrl: string;

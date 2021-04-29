@@ -1,6 +1,6 @@
 {
-  "name": "medusa-js",
-  "version": "1.0.0",
+  "name": "@medusajs/medusa-js",
+  "version": "1.0.1-canary.1",
   "description": "Client for Medusa Commerce Rest API",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -13,7 +13,7 @@
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json"
   },
-  "author": "mrbltech",
+  "author": "Oliver Juhl",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.0"
