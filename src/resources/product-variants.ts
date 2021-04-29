@@ -1,10 +1,11 @@
 import BaseResource from './base';
+import * as Types from '../types';
 
 class ProductVariantsResource extends BaseResource {
   /**
    * @description Retrieves a single product variant
    * @param id is required
-   * @returns AsyncResult<ProductVariant> TODO: double check, Docs says Region?
+   * @returns AsyncResult<ProductVariant>
    */
   retrieve(id: string): Types.AsyncResult<Types.ProductVariant> {
     const path = `/store/product-variants/${id}`;
@@ -16,7 +17,6 @@ class ProductVariantsResource extends BaseResource {
    * @param params ids is optional and used to return a specific list of Product Variants
    * @returns AsyncResult<ProductVariant[]>
    */
-
   list(ids?: string[]): Types.AsyncResult<Types.ProductVariant[]> {
     const path = `/variants`;
 

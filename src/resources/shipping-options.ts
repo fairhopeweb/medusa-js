@@ -1,7 +1,13 @@
 import BaseResource from './base';
+import * as Types from '../types';
 
 class ShippingOptionsResource extends BaseResource {
-  list(query: string): Types.AsyncResult<Types.ShippingOption[]> {
+  /**
+   * @description Lists shiping options available for a cart
+   * @param query should contain cart id
+   * @returns AsyncResult<{ shipping_options: ShippingOptions[] }>
+   */
+  list(query: string): Types.AsyncResult<{ shipping_options: Types.ShippingOption[] }> {
     let path = `/shipping-options`;
     if (typeof query === 'string') {
       path = `/shipping-options/${query}`;

@@ -1,16 +1,7 @@
 import BaseResource from './base';
+import * as Types from '../types';
 
 class OrdersResource extends BaseResource {
-  /**
-   * @description Creates an order
-   * @param cart_id is required
-   * @returns AsyncResult<Order>
-   */
-  create(cart_id: string): Types.AsyncResult<Types.Order> {
-    const path = `/orders`;
-    return this.client.request('POST', path, cart_id);
-  }
-
   /**
    * @description Retrieves an order
    * @param id is required
@@ -19,6 +10,37 @@ class OrdersResource extends BaseResource {
   retrieve(id: string): Types.AsyncResult<Types.Order> {
     const path = `/orders/${id}`;
     return this.client.request('GET', path);
+  }
+
+  /**
+   * @description Retrieves an order by cart id
+   * @param cart_id is required
+   * @returns AsyncResult<Order>
+   */
+  retrieveByCartId(cart_id: string): Types.AsyncResult<Types.Order> {
+    const path = `/orders/cart/${cart_id}`;
+    return this.client.request('GET', path);
+  }
+
+  /**
+   * @description Look up an order using order details
+   * @param payload details used to look up the order
+   * @returns AsyncResult<Order>
+   */
+  lookupOrder(payload: Types.OrderLookUpPayload): Types.AsyncResult<Types.Order> {
+    let path = `/orders?`;
+
+    const queryString = Object.entries(payload).map(([key, value]) => {
+      let val = value;
+      if (Array.isArray(value)) {
+        val = value.join(',');
+      }
+
+      return `${key}=${encodeURIComponent(val)}`;
+    });
+    path = `/store/orders?${queryString.join('&')}`;
+
+    return this.client.request('GET', path, payload);
   }
 }
 

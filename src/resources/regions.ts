@@ -1,4 +1,5 @@
 import BaseResource from './base';
+import * as Types from '../types';
 
 class RegionsResource extends BaseResource {
   /**

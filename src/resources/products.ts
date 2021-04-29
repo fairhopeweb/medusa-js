@@ -1,8 +1,9 @@
 import BaseResource from './base';
 import ProductVariantsResource from './product-variants';
+import * as Types from '../types';
 
 class ProductsResource extends BaseResource {
-  public variants = new ProductVariantsResource(this.client.request);
+  public variants = new ProductVariantsResource(this.client);
 
   /**
    * @description Retrieves a single Product
