@@ -12,7 +12,7 @@ class CustomerResource extends BaseResource {
    * @param payload information of customer
    * @returns AsyncResult<Customer>
    */
-  create(payload: Types.CustomerCreateResource): Types.AsyncResult<Types.Customer> {
+  create(payload: Types.CustomerCreateResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers`;
     return this.client.request('POST', path, payload);
   }
@@ -22,7 +22,7 @@ class CustomerResource extends BaseResource {
    * @param id id of customer
    * @returns AsyncResult<Customer>
    */
-  retrieve(id: string): Types.AsyncResult<Types.Customer> {
+  retrieve(id: string): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}`;
     return this.client.request('GET', path);
   }
@@ -33,7 +33,7 @@ class CustomerResource extends BaseResource {
    * @param payload information to update customer with
    * @returns AsyncResult<Customer>
    */
-  update(id: string, payload: Types.CustomerUpdateResource): Types.AsyncResult<Types.Customer> {
+  update(id: string, payload: Types.CustomerUpdateResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}`;
     return this.client.request('POST', path, payload);
   }
@@ -53,7 +53,7 @@ class CustomerResource extends BaseResource {
    * @param payload info used to reset customer password
    * @returns AsyncResult<Customer>
    */
-  resetPassword(payload: Types.CustomerResetPasswordResource): Types.AsyncResult<Types.Customer> {
+  resetPassword(payload: Types.CustomerResetPasswordResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/password-reset`;
     return this.client.request('POST', path, payload);
   }
@@ -63,7 +63,9 @@ class CustomerResource extends BaseResource {
    * @param payload info used to generate token
    * @returns AsyncResult<Customer>
    */
-  generatePasswordToken(payload: Types.CustomerGeneratePasswordTokenResource): Types.AsyncResult<Types.Customer> {
+  generatePasswordToken(
+    payload: Types.CustomerGeneratePasswordTokenResource,
+  ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/password-token`;
     return this.client.request('POST', path, payload);
   }

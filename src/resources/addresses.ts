@@ -8,7 +8,7 @@ class AddressesResource extends BaseResource {
    * @param payload contains information to create an address
    * @returns AsyncResult<Customer>
    */
-  addAddress(id: string, payload: { address: Types.Address }): Types.AsyncResult<Types.Customer> {
+  addAddress(id: string, payload: { address: Types.Address }): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}/addresses`;
     return this.client.request('POST', path, payload);
   }
@@ -19,7 +19,7 @@ class AddressesResource extends BaseResource {
    * @param address_id id of the address to delete
    * @returns AsyncResult<Customer>
    */
-  deleteAddress(id: string, address_id: string): Types.AsyncResult<Types.Customer> {
+  deleteAddress(id: string, address_id: string): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}/addresses/${address_id}`;
     return this.client.request('DELETE', path);
   }
@@ -29,7 +29,11 @@ class AddressesResource extends BaseResource {
    * @param id id of customer
    * @returns AsyncResult<Customer>
    */
-  updateAddress(id: string, address_id: string, payload: Types.Address): Types.AsyncResult<Types.Customer> {
+  updateAddress(
+    id: string,
+    address_id: string,
+    payload: Types.Address,
+  ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}/addresses/${address_id}`;
     return this.client.request('POST', path, payload);
   }

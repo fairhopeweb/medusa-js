@@ -7,7 +7,7 @@ class ProductVariantsResource extends BaseResource {
    * @param id is required
    * @returns AsyncResult<ProductVariant>
    */
-  retrieve(id: string): Types.AsyncResult<Types.ProductVariant> {
+  retrieve(id: string): Types.AsyncResult<{ variant: Types.ProductVariant }> {
     const path = `/store/product-variants/${id}`;
     return this.client.request('GET', path);
   }
@@ -17,7 +17,7 @@ class ProductVariantsResource extends BaseResource {
    * @param params ids is optional and used to return a specific list of Product Variants
    * @returns AsyncResult<ProductVariant[]>
    */
-  list(ids?: string[]): Types.AsyncResult<Types.ProductVariant[]> {
+  list(ids?: string[]): Types.AsyncResult<{ variants: Types.ProductVariant[] }> {
     const path = `/variants`;
 
     const search = Object.entries(ids).map(([key, value]) => {

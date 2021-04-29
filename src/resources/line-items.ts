@@ -8,7 +8,7 @@ class LineItemsResource extends BaseResource {
    * @param payload details needed to create a line-item
    * @returns AsyncResult<Cart>
    */
-  create(cart_id: string, payload: Types.LineItemCreatePayload): Promise<Types.AsyncResult<Types.Cart>> {
+  create(cart_id: string, payload: Types.LineItemCreatePayload): Types.AsyncResult<{ cart: Types.Cart }> {
     const path = `/store/carts/${cart_id}/line-items`;
     return this.client.request('POST', path, payload);
   }
@@ -25,7 +25,7 @@ class LineItemsResource extends BaseResource {
     cart_id: string,
     line_id: string,
     payload: Types.LineItemUpdatePayload,
-  ): Promise<Types.AsyncResult<Types.Cart>> {
+  ): Types.AsyncResult<{ cart: Types.Cart }> {
     const path = `/store/carts/${cart_id}/line-items/${line_id}`;
     return this.client.request('POST', path, payload);
   }
@@ -36,7 +36,7 @@ class LineItemsResource extends BaseResource {
    * @param line_id id of item to remove
    * @returns AsyncResult<Cart>
    */
-  delete(cart_id: string, line_id: string): Promise<Types.AsyncResult<Types.Cart>> {
+  delete(cart_id: string, line_id: string): Types.AsyncResult<{ cart: Types.Cart }> {
     const path = `/store/carts/${cart_id}/line-items/${line_id}`;
     return this.client.request('DELETE', path);
   }

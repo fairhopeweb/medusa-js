@@ -7,7 +7,7 @@ class PaymentMethodsResource extends BaseResource {
    * @param id id of cart
    * @returns AsyncResult<object>
    */
-  list(id: string): Types.AsyncResult<object> {
+  list(id: string): Types.AsyncResult<{ payment_methods: object[] }> {
     const path = `/store/carts/${id}/payment-methods`;
     return this.client.request('GET', path);
   }

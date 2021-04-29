@@ -6,7 +6,7 @@ class AuthResource extends BaseResource {
    * @description Authenticates a customer using email and password combination
    * @returns AsyncResult<Customer>
    */
-  authenticate(payload: Types.AuthCreateSessionResource): Types.AsyncResult<Types.Customer> {
+  authenticate(payload: Types.AuthCreateSessionResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/auth`;
     return this.client.request('POST', path, payload);
   }
@@ -16,7 +16,7 @@ class AuthResource extends BaseResource {
    * Usually used to check if authenticated session is alive.
    * @returns AsyncResult<Customer>
    */
-  getSession(): Types.AsyncResult<Types.Customer> {
+  getSession(): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/auth`;
     return this.client.request('GET', path);
   }
@@ -26,7 +26,7 @@ class AuthResource extends BaseResource {
    * @param email is required
    * @returns AsyncResult<{ exists: boolean }>
    */
-  exists(email: string): Types.AsyncResult<object> {
+  exists(email: string): Types.AsyncResult<{ exists: boolean }> {
     const path = `/store/auth/${email}`;
     return this.client.request('GET', path);
   }

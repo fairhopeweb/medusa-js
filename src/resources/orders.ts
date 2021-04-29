@@ -7,7 +7,7 @@ class OrdersResource extends BaseResource {
    * @param id is required
    * @returns AsyncResult<Order>
    */
-  retrieve(id: string): Types.AsyncResult<Types.Order> {
+  retrieve(id: string): Types.AsyncResult<{ order: Types.Order }> {
     const path = `/orders/${id}`;
     return this.client.request('GET', path);
   }
@@ -17,7 +17,7 @@ class OrdersResource extends BaseResource {
    * @param cart_id is required
    * @returns AsyncResult<Order>
    */
-  retrieveByCartId(cart_id: string): Types.AsyncResult<Types.Order> {
+  retrieveByCartId(cart_id: string): Types.AsyncResult<{ order: Types.Order }> {
     const path = `/orders/cart/${cart_id}`;
     return this.client.request('GET', path);
   }
@@ -27,7 +27,7 @@ class OrdersResource extends BaseResource {
    * @param payload details used to look up the order
    * @returns AsyncResult<Order>
    */
-  lookupOrder(payload: Types.OrderLookUpPayload): Types.AsyncResult<Types.Order> {
+  lookupOrder(payload: Types.OrderLookUpPayload): Types.AsyncResult<{ order: Types.Order }> {
     let path = `/orders?`;
 
     const queryString = Object.entries(payload).map(([key, value]) => {
