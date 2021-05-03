@@ -1,8 +1,6 @@
 import BaseResource from './base';
 import * as Types from '../types';
 
-const baseUrl = '/store/swaps';
-
 class SwapsResource extends BaseResource {
   /**
    * @description Creates a swap from a cart
@@ -10,7 +8,7 @@ class SwapsResource extends BaseResource {
    * @returns AsyncResult<{ swap: Swap }>
    */
   create(payload: { cart_id: string }): Types.AsyncResult<{ swap: Types.Swap }> {
-    const path = `${baseUrl}`;
+    const path = `/store/swaps`;
     return this.client.request('POST', path, payload);
   }
 
@@ -20,7 +18,7 @@ class SwapsResource extends BaseResource {
    * @returns AsyncResult<{ swap: Swap }>
    */
   retrieve(cart_id: string): Types.AsyncResult<{ swap: Types.Swap }> {
-    const path = `${baseUrl}/${cart_id}`;
+    const path = `/store/swaps/${cart_id}`;
     return this.client.request('GET', path);
   }
 }

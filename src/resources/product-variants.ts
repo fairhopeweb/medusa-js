@@ -8,7 +8,7 @@ class ProductVariantsResource extends BaseResource {
    * @returns AsyncResult<ProductVariant>
    */
   retrieve(id: string): Types.AsyncResult<{ variant: Types.ProductVariant }> {
-    const path = `/store/product-variants/${id}`;
+    const path = `/store/variants/${id}`;
     return this.client.request('GET', path);
   }
 
@@ -18,7 +18,7 @@ class ProductVariantsResource extends BaseResource {
    * @returns AsyncResult<ProductVariant[]>
    */
   list(ids?: string[]): Types.AsyncResult<{ variants: Types.ProductVariant[] }> {
-    const path = `/variants`;
+    const path = `/store/variants`;
 
     const search = Object.entries(ids).map(([key, value]) => {
       if (Array.isArray(value)) {
