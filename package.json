@@ -1,6 +1,6 @@
 {
   "name": "@medusajs/medusa-js",
-  "version": "1.0.1-canary.0",
+  "version": "1.0.1-canary.1",
   "description": "Client for Medusa Commerce Rest API",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
