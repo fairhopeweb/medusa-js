@@ -33,15 +33,16 @@ export interface CustomerCreateResource {
   first_name: string;
   last_name: string;
   password: string;
-  phone_number?: string;
+  phone?: string;
 }
 
 export interface CustomerUpdateResource {
-  first_name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  phone_number: string;
+  billing_address?: Address;
+  first_name?: string;
+  last_name?: string;
+  password?: string;
+  phone?: string;
+  metadata?: JSON;
 }
 
 export interface AuthCreateSessionResource {

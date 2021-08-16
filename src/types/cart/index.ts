@@ -3,6 +3,8 @@ import { Customer } from '../customer';
 import { Discount } from '../discount';
 import { GiftCard } from '../gift-card';
 import { LineItem } from '../line-item';
+import { Order } from '../order';
+import { Swap } from '../swap';
 import { Payment } from '../payment';
 import { Region } from '../region';
 import { ShippingMethod } from '../shipping-method';
@@ -44,6 +46,12 @@ export interface Cart {
   subtotal: number;
   refundable_amount: number;
   gift_card_total: number;
+}
+
+export interface CompleteCartResponse {
+  data: Order | Cart | Swap;
+  type: "order" | "cart" | "swap";
+  payment_status?: string;
 }
 
 export enum CartType {

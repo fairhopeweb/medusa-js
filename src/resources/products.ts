@@ -8,7 +8,7 @@ class ProductsResource extends BaseResource {
   /**
    * @description Retrieves a single Product
    * @param id is required
-   * @returns AsyncResult<Product>
+   * @returns AsyncResult<{ product: Product }>
    */
   retrieve(id: string): Types.AsyncResult<{ product: Types.Product }> {
     const path = `/store/products/${id}`;
@@ -17,7 +17,7 @@ class ProductsResource extends BaseResource {
 
   /**
    * @description Retrieves a list of products
-   * @returns AsyncResult<Product[]>
+   * @returns AsyncResult<{ products: Product[] }>
    */
   list(): Types.AsyncResult<{ products: Types.Product[] }> {
     const path = `/store/products`;

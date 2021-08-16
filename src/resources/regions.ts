@@ -4,7 +4,7 @@ import * as Types from '../types';
 class RegionsResource extends BaseResource {
   /**
    * @description Retrieves a list of regions
-   * @returns AsyncResult<Region[]>
+   * @returns AsyncResult<{ regions: Region[] }>
    */
   list(): Types.AsyncResult<{ regions: Types.Region[] }> {
     const path = `/store/regions`;
@@ -14,7 +14,7 @@ class RegionsResource extends BaseResource {
   /**
    * @description Retrieves a region
    * @param id is required
-   * @returns AsyncResult<Region>
+   * @returns AsyncResult<{ region: Region }>
    */
   retrieve(id: string): Types.AsyncResult<{ region: Types.Region }> {
     const path = `/store/regions/${id}`;

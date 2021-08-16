@@ -5,7 +5,7 @@ class PaymentMethodsResource extends BaseResource {
   /**
    * Lists customer payment methods
    * @param id id of cart
-   * @returns AsyncResult<object>
+   * @returns AsyncResult<{ payment_methods: object[] }>
    */
   list(id: string): Types.AsyncResult<{ payment_methods: object[] }> {
     const path = `/store/carts/${id}/payment-methods`;

@@ -5,7 +5,7 @@ class OrdersResource extends BaseResource {
   /**
    * @description Retrieves an order
    * @param id is required
-   * @returns AsyncResult<Order>
+   * @returns AsyncResult<{ order: Order }>
    */
   retrieve(id: string): Types.AsyncResult<{ order: Types.Order }> {
     const path = `/store/orders/${id}`;
@@ -15,7 +15,7 @@ class OrdersResource extends BaseResource {
   /**
    * @description Retrieves an order by cart id
    * @param cart_id is required
-   * @returns AsyncResult<Order>
+   * @returns AsyncResult<{ order: Order }>
    */
   retrieveByCartId(cart_id: string): Types.AsyncResult<{ order: Types.Order }> {
     const path = `/store/orders/cart/${cart_id}`;
@@ -25,7 +25,7 @@ class OrdersResource extends BaseResource {
   /**
    * @description Look up an order using order details
    * @param payload details used to look up the order
-   * @returns AsyncResult<Order>
+   * @returns AsyncResult<{ order: Order }>
    */
   lookupOrder(payload: Types.OrderLookUpPayload): Types.AsyncResult<{ order: Types.Order }> {
     let path = `/store/orders?`;

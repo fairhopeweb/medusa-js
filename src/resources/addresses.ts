@@ -6,7 +6,7 @@ class AddressesResource extends BaseResource {
    * Adds an address to a customers saved addresses
    * @param id id of customer
    * @param payload contains information to create an address
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   addAddress(id: string, payload: { address: Types.Address }): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}/addresses`;
@@ -17,7 +17,7 @@ class AddressesResource extends BaseResource {
    * Deletes an address of a customer
    * @param id id of customer
    * @param address_id id of the address to delete
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   deleteAddress(id: string, address_id: string): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}/addresses/${address_id}`;
@@ -27,7 +27,7 @@ class AddressesResource extends BaseResource {
   /**
    * Update an address of a customer
    * @param id id of customer
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   updateAddress(
     id: string,

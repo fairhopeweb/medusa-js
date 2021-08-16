@@ -10,7 +10,7 @@ class CustomerResource extends BaseResource {
   /**
    * Creates a customer
    * @param payload information of customer
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   create(payload: Types.CustomerCreateResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers`;
@@ -20,7 +20,7 @@ class CustomerResource extends BaseResource {
   /**
    * Retrieves a customer
    * @param id id of customer
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   retrieve(id: string): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}`;
@@ -31,7 +31,7 @@ class CustomerResource extends BaseResource {
    * Updates a customer
    * @param id id of customer
    * @param payload information to update customer with
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   update(id: string, payload: Types.CustomerUpdateResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}`;
@@ -51,7 +51,7 @@ class CustomerResource extends BaseResource {
   /**
    * Resets customer password
    * @param payload info used to reset customer password
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   resetPassword(payload: Types.CustomerResetPasswordResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/password-reset`;
@@ -61,7 +61,7 @@ class CustomerResource extends BaseResource {
   /**
    * Generates a reset password token
    * @param payload info used to generate token
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   generatePasswordToken(
     payload: Types.CustomerGeneratePasswordTokenResource,

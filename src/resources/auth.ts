@@ -4,7 +4,7 @@ import * as Types from '../types';
 class AuthResource extends BaseResource {
   /**
    * @description Authenticates a customer using email and password combination
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   authenticate(payload: Types.AuthCreateSessionResource): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/auth`;
@@ -14,7 +14,7 @@ class AuthResource extends BaseResource {
   /**
    * @description Retrieves an authenticated session
    * Usually used to check if authenticated session is alive.
-   * @returns AsyncResult<Customer>
+   * @returns AsyncResult<{ customer: Customer }>
    */
   getSession(): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/auth`;

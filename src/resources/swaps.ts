@@ -17,7 +17,7 @@ class SwapsResource extends BaseResource {
    * @param cart_id id of cart
    * @returns AsyncResult<{ swap: Swap }>
    */
-  retrieve(cart_id: string): Types.AsyncResult<{ swap: Types.Swap }> {
+  retrieveByCartId(cart_id: string): Types.AsyncResult<{ swap: Types.Swap }> {
     const path = `/store/swaps/${cart_id}`;
     return this.client.request('GET', path);
   }
