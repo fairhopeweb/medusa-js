@@ -16,7 +16,9 @@
   "author": "Oliver Juhl",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "retry-axios": "^2.5.0",
+    "uuid": "^8.3.2"
   },
   "repository": {
     "type": "git",
