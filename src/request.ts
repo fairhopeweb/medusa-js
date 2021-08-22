@@ -39,40 +39,63 @@ class Client {
     }
 
     // all 5xx errors are retried
-    if (err.response.status >= 500 && err.response.status <= 599) {
+    if (err.response.status > 500 && err.response.status <= 599) {
       return true;
     }
 
     return false;
   }
 
-  setHeaders(userHeaders: object) {
+  /**
+   * Stolen from https://github.com/stripe/stripe-node/blob/fd0a597064289b8c82f374f4747d634050739043/lib/utils.js#L282
+   */
+  normalizeHeaders(obj: any) {
+    if (!(obj && typeof obj === 'object')) {
+      return obj;
+    }
+
+    return Object.keys(obj).reduce((result, header) => {
+      result[this.normalizeHeader(header)] = obj[header];
+      return result;
+    }, {});
+  }
+
+  /**
+   * Stolen from https://github.com/marten-de-vries/header-case-normalizer/blob/master/index.js#L36-L41
+   */
+  normalizeHeader(header: any) {
+    return header
+      .split('-')
+      .map((text) => text.charAt(0).toUpperCase() + text.substr(1).toLowerCase())
+      .join('-');
+  }
+
+  setHeaders(userHeaders: object, method: Types.RequestMethod) {
     const defaultHeaders = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'current-number': 1,
     };
 
     // only add idempotency key, if we want to retry
-    if (this.config.maxRetries > 0) {
+    if (this.config.maxRetries > 0 && method === 'POST') {
       defaultHeaders['Idempotency-Key'] = uuidv4();
     }
 
-    console.log('BeforE: ', defaultHeaders);
-    console.log('After: ', userHeaders);
-
-    return Object.assign(defaultHeaders, userHeaders);
+    return Object.assign(defaultHeaders, this.normalizeHeaders(userHeaders));
   }
 
   /**
    * Create the axios client used for requests
-   * @param config user supplied configurtaions
-   * The cart will contain the payload, if provided. Otherwise it will be empty
-   * @returns AsyncResult<{ cart: Cart }>
+   * @param config user supplied configurations
+   * @returns AxiosInstance
    */
   createClient(config: Config) {
     const client = axios.create({
       baseURL: config.baseUrl,
     });
+
+    const interceptorId = rax.attach(client);
 
     client.defaults.raxConfig = {
       instance: client,
@@ -94,10 +117,8 @@ class Client {
       url: path,
       data: payload,
       json: true,
-      headers: this.setHeaders(options.headers),
+      headers: this.setHeaders(options.headers, method),
     };
-
-    console.log(reqOpts);
 
     return this.axiosClient(reqOpts);
   }
