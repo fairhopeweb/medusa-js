@@ -1,7 +1,6 @@
 export interface RequestOptions {
-  apiKey?: string;
-  timeout?: number;
-  numberOfRetries?: number;
+  idempotency_key?: string;
+  raw?: boolean;
 }
 
 export type Response<T> = T & {

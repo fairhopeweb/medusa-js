@@ -1,14 +1,18 @@
 import BaseResource from './base';
 import * as Types from '../types';
+import { RequestOptions } from '../types';
 
 class AuthResource extends BaseResource {
   /**
    * @description Authenticates a customer using email and password combination
    * @returns AsyncResult<{ customer: Customer }>
    */
-  authenticate(payload: Types.AuthCreateSessionResource): Types.AsyncResult<{ customer: Types.Customer }> {
+  authenticate(
+    payload: Types.AuthCreateSessionResource,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/auth`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 
   /**
@@ -16,9 +20,9 @@ class AuthResource extends BaseResource {
    * Usually used to check if authenticated session is alive.
    * @returns AsyncResult<{ customer: Customer }>
    */
-  getSession(): Types.AsyncResult<{ customer: Types.Customer }> {
+  getSession(options: RequestOptions = {}): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/auth`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 
   /**
@@ -26,9 +30,9 @@ class AuthResource extends BaseResource {
    * @param email is required
    * @returns AsyncResult<{ exists: boolean }>
    */
-  exists(email: string): Types.AsyncResult<{ exists: boolean }> {
+  exists(email: string, options: RequestOptions = {}): Types.AsyncResult<{ exists: boolean }> {
     const path = `/store/auth/${email}`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 }
 

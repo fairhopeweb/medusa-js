@@ -1,5 +1,6 @@
 import BaseResource from './base';
 import * as Types from '../types';
+import { RequestOptions } from '../types';
 
 class OrdersResource extends BaseResource {
   /**
@@ -7,9 +8,9 @@ class OrdersResource extends BaseResource {
    * @param id is required
    * @returns AsyncResult<{ order: Order }>
    */
-  retrieve(id: string): Types.AsyncResult<{ order: Types.Order }> {
+  retrieve(id: string, options: RequestOptions = {}): Types.AsyncResult<{ order: Types.Order }> {
     const path = `/store/orders/${id}`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 
   /**
@@ -17,9 +18,9 @@ class OrdersResource extends BaseResource {
    * @param cart_id is required
    * @returns AsyncResult<{ order: Order }>
    */
-  retrieveByCartId(cart_id: string): Types.AsyncResult<{ order: Types.Order }> {
+  retrieveByCartId(cart_id: string, options: RequestOptions = {}): Types.AsyncResult<{ order: Types.Order }> {
     const path = `/store/orders/cart/${cart_id}`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 
   /**
@@ -27,7 +28,10 @@ class OrdersResource extends BaseResource {
    * @param payload details used to look up the order
    * @returns AsyncResult<{ order: Order }>
    */
-  lookupOrder(payload: Types.OrderLookUpPayload): Types.AsyncResult<{ order: Types.Order }> {
+  lookupOrder(
+    payload: Types.OrderLookUpPayload,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ order: Types.Order }> {
     let path = `/store/orders?`;
 
     const queryString = Object.entries(payload).map(([key, value]) => {
@@ -40,7 +44,7 @@ class OrdersResource extends BaseResource {
     });
     path = `/store/orders?${queryString.join('&')}`;
 
-    return this.client.request('GET', path, payload);
+    return this.client.request('GET', path, payload, options);
   }
 }
 

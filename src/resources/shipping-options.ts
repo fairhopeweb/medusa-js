@@ -1,5 +1,6 @@
 import BaseResource from './base';
 import * as Types from '../types';
+import { RequestOptions } from '../types';
 
 class ShippingOptionsResource extends BaseResource {
   /**
@@ -7,9 +8,12 @@ class ShippingOptionsResource extends BaseResource {
    * @param query should contain cart id
    * @returns AsyncResult<{ shipping_options: ShippingOptions[] }>
    */
-  listCartOptions(cart_id: string): Types.AsyncResult<{ shipping_options: Types.ShippingOption[] }> {
+  listCartOptions(
+    cart_id: string,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ shipping_options: Types.ShippingOption[] }> {
     let path = `/store/shipping-options/${cart_id}`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 
   /**
@@ -17,7 +21,10 @@ class ShippingOptionsResource extends BaseResource {
    * @param query should contain cart id
    * @returns AsyncResult<{ shipping_options: ShippingOptions[] }>
    */
-  list(query: string | object): Types.AsyncResult<{ shipping_options: Types.ShippingOption[] }> {
+  list(
+    query: string | object,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ shipping_options: Types.ShippingOption[] }> {
     let path = `/store/shipping-options`;
     if (typeof query === 'string') {
       path = `/store/shipping-options/${query}`;
@@ -34,7 +41,7 @@ class ShippingOptionsResource extends BaseResource {
       path = `/store/shipping-options?${queryString.join('&')}`;
     }
 
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 }
 

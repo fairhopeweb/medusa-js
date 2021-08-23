@@ -2,6 +2,7 @@ import * as rax from 'retry-axios';
 import axios, { AxiosInstance } from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import * as Types from './types';
+import { RequestOptions } from './types';
 
 export interface Config {
   baseUrl: string;
@@ -51,7 +52,9 @@ class Client {
       return true;
     }
 
-    // all 5xx errors are retried
+    // All 5xx errors are retried
+    // OBS: We are currently not retrying 500 request, since our core needs proper error handling.
+    //      At the moment, error 500 will be returned on all error, that are not of type MedusaError.
     if (err.response.status > 500 && err.response.status <= 599) {
       return true;
     }
@@ -83,6 +86,12 @@ class Client {
       .join('-');
   }
 
+  /**
+   * Create all the initial headers.
+   * We add the idempotency key, if the request is configured to retry.
+   * @param config user supplied configurations
+   * @returns AxiosInstance
+   */
   setHeaders(userHeaders: object, method: Types.RequestMethod) {
     const defaultHeaders = {
       Accept: 'application/json',
@@ -100,6 +109,8 @@ class Client {
 
   /**
    * Create the axios client used for requests
+   * As part of the creation, we configure the retry conditions
+   * and the exponential backoff approach.
    * @param config user supplied configurations
    * @returns AxiosInstance
    */
@@ -123,17 +134,43 @@ class Client {
     return client;
   }
 
-  async request(method: Types.RequestMethod, path: string, payload: object, options: any = {}) {
+  /**
+   * Format the response data as:
+   *  { cart: { id: "some_cart", ... } }
+   * Instead of:
+   *  { id: "some_cart" }
+   * Emit `raw` from request options to achieve last mentioned.
+   * @param data Axios response data
+   * @param status Axios response status code
+   * @returns The raw response
+   */
+  createRawResponse(data: any, status: number) {
+    let res = { status };
+    Object.entries(data).map(([key, value]) => {
+      res[key] = value;
+    });
+
+    return res;
+  }
+
+  async request(method: Types.RequestMethod, path: string, payload: object, options: RequestOptions) {
     const reqOpts = {
       method,
       withCredentials: true,
       url: path,
       data: payload,
       json: true,
-      headers: this.setHeaders(options.headers, method),
+      headers: this.setHeaders(options, method),
     };
 
-    return this.axiosClient(reqOpts);
+    const { data, status, headers } = await this.axiosClient(reqOpts);
+
+    if (options?.raw) {
+      return this.createRawResponse(data, status);
+    } else {
+      const val = Object.values(data)[0];
+      return val;
+    }
   }
 }
 

@@ -2,6 +2,7 @@ import AddressesResource from './addresses';
 import BaseResource from './base';
 import PaymentMethodsResource from './payment-methods';
 import * as Types from '../types';
+import { RequestOptions } from '../types';
 
 class CustomerResource extends BaseResource {
   public paymentMethods = new PaymentMethodsResource(this.client);
@@ -12,9 +13,12 @@ class CustomerResource extends BaseResource {
    * @param payload information of customer
    * @returns AsyncResult<{ customer: Customer }>
    */
-  create(payload: Types.CustomerCreateResource): Types.AsyncResult<{ customer: Types.Customer }> {
+  create(
+    payload: Types.CustomerCreateResource,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 
   /**
@@ -22,9 +26,9 @@ class CustomerResource extends BaseResource {
    * @param id id of customer
    * @returns AsyncResult<{ customer: Customer }>
    */
-  retrieve(id: string): Types.AsyncResult<{ customer: Types.Customer }> {
+  retrieve(id: string, options: RequestOptions = {}): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 
   /**
@@ -33,9 +37,13 @@ class CustomerResource extends BaseResource {
    * @param payload information to update customer with
    * @returns AsyncResult<{ customer: Customer }>
    */
-  update(id: string, payload: Types.CustomerUpdateResource): Types.AsyncResult<{ customer: Types.Customer }> {
+  update(
+    id: string,
+    payload: Types.CustomerUpdateResource,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/${id}`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 
   /**
@@ -43,9 +51,9 @@ class CustomerResource extends BaseResource {
    * @param id id of customer
    * @returns AsyncResult<object[]>
    */
-  listOrders(id: string): Types.AsyncResult<object> {
+  listOrders(id: string, options: RequestOptions = {}): Types.AsyncResult<object> {
     const path = `/store/customers/${id}/orders`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 
   /**
@@ -53,9 +61,12 @@ class CustomerResource extends BaseResource {
    * @param payload info used to reset customer password
    * @returns AsyncResult<{ customer: Customer }>
    */
-  resetPassword(payload: Types.CustomerResetPasswordResource): Types.AsyncResult<{ customer: Types.Customer }> {
+  resetPassword(
+    payload: Types.CustomerResetPasswordResource,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/password-reset`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 
   /**
@@ -65,9 +76,10 @@ class CustomerResource extends BaseResource {
    */
   generatePasswordToken(
     payload: Types.CustomerGeneratePasswordTokenResource,
+    options: RequestOptions = {},
   ): Types.AsyncResult<{ customer: Types.Customer }> {
     const path = `/store/customers/password-token`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 }
 

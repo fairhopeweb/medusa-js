@@ -25,17 +25,15 @@ The SDK needs to be configured with a publishable key from an environment. These
 Import Medusa as a default import and initiate it:
 
 ```js
-import Medusa from "@medusajs/medusa-js";
+import Medusa from '@medusajs/medusa-js';
 
 const medusa = new Medusa('pk_...');
 
-const createCart = async () => {
-  const cart = await medusa.carts.create({});
+// Default formatting
+const cart = await medusa.carts.create({});
 
-  console.log(cart.id);
-};
-
-createCart();
+// Raw formatting
+const cart = await medusa.carts.create({}, { raw: true });
 ```
 
 ## Configuration
@@ -51,7 +49,7 @@ const medusa = new Medusa('sk_...', {
 });
 ```
 
-| Option              | Default            | Description                                                                                                                                                                                                                                       |
-| ------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `maxRetries`        | `0`             | The amount of times a request is retried.                                                                             
-| `baseUrl`              | `'https://api.medusa-commerce.com'` | The url to which requests are made to                    |
+| Option       | Default                             | Description                               |
+| ------------ | ----------------------------------- | ----------------------------------------- |
+| `maxRetries` | `0`                                 | The amount of times a request is retried. |
+| `baseUrl`    | `'https://api.medusa-commerce.com'` | The url to which requests are made to     |

@@ -1,5 +1,6 @@
 import BaseResource from './base';
 import * as Types from '../types';
+import { RequestOptions } from '../types';
 
 class PaymentMethodsResource extends BaseResource {
   /**
@@ -7,9 +8,9 @@ class PaymentMethodsResource extends BaseResource {
    * @param id id of cart
    * @returns AsyncResult<{ payment_methods: object[] }>
    */
-  list(id: string): Types.AsyncResult<{ payment_methods: object[] }> {
+  list(id: string, options: RequestOptions = {}): Types.AsyncResult<{ payment_methods: object[] }> {
     const path = `/store/carts/${id}/payment-methods`;
-    return this.client.request('GET', path);
+    return this.client.request('GET', path, {}, options);
   }
 }
 

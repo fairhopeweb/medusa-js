@@ -1,5 +1,6 @@
 import BaseResource from './base';
 import * as Types from '../types';
+import { RequestOptions } from '../types';
 
 class LineItemsResource extends BaseResource {
   /**
@@ -8,9 +9,13 @@ class LineItemsResource extends BaseResource {
    * @param payload details needed to create a line-item
    * @returns AsyncResult<{ cart: Cart }>
    */
-  create(cart_id: string, payload: Types.LineItemCreatePayload): Types.AsyncResult<{ cart: Types.Cart }> {
+  create(
+    cart_id: string,
+    payload: Types.LineItemCreatePayload,
+    options: RequestOptions = {},
+  ): Types.AsyncResult<{ cart: Types.Cart }> {
     const path = `/store/carts/${cart_id}/line-items`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 
   /**
@@ -25,9 +30,10 @@ class LineItemsResource extends BaseResource {
     cart_id: string,
     line_id: string,
     payload: Types.LineItemUpdatePayload,
+    options: RequestOptions = {},
   ): Types.AsyncResult<{ cart: Types.Cart }> {
     const path = `/store/carts/${cart_id}/line-items/${line_id}`;
-    return this.client.request('POST', path, payload);
+    return this.client.request('POST', path, payload, options);
   }
 
   /**
@@ -36,9 +42,9 @@ class LineItemsResource extends BaseResource {
    * @param line_id id of item to remove
    * @returns AsyncResult<{ cart: Cart }>
    */
-  delete(cart_id: string, line_id: string): Types.AsyncResult<{ cart: Types.Cart }> {
+  delete(cart_id: string, line_id: string, options: RequestOptions = {}): Types.AsyncResult<{ cart: Types.Cart }> {
     const path = `/store/carts/${cart_id}/line-items/${line_id}`;
-    return this.client.request('DELETE', path);
+    return this.client.request('DELETE', path, {}, options);
   }
 }
 
