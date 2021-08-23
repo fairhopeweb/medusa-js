@@ -26,8 +26,8 @@ class Medusa {
   public shippingOptions: ShippingOptionsResource;
   public swaps: SwapsResource;
 
-  constructor(config: Config) {
-    this.client = new Client(config);
+  constructor(key: string, config: Config) {
+    this.client = new Client(key, config);
 
     this.auth = new AuthResource(this.client);
     this.carts = new CartsResource(this.client);

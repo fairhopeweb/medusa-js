@@ -9,16 +9,29 @@ export interface Config {
 }
 
 const defaultConfig = {
-  maxRetries: 3,
-  baseUrl: 'http://localhost:9000',
+  maxRetries: 0,
+  baseUrl: 'https://api.medusa-commerce.com',
 };
 
 class Client {
   private axiosClient: AxiosInstance;
   private config: Config;
+  private key: string;
 
-  constructor(config: Config) {
+  constructor(key: string, config: Config) {
+    /** @private @constant {AxiosInstance} */
     this.axiosClient = this.createClient({ ...defaultConfig, ...config });
+
+    /** @private @constant {string} */
+    if (typeof key !== `string`) {
+      throw new Error(
+        'Medusa: Something is wrong with your publishable key. Please check, that you are initializing Medusa with the key as first argument and optional config as second.',
+      );
+    } else {
+      this.key = key;
+    }
+
+    /** @private @constant {Config} */
     this.config = { ...defaultConfig, ...config };
   }
 
@@ -74,7 +87,7 @@ class Client {
     const defaultHeaders = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'current-number': 1,
+      Authorization: `Bearer ${this.key}`,
     };
 
     // only add idempotency key, if we want to retry
