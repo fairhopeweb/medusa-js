@@ -53,8 +53,8 @@ class Client {
     }
 
     // All 5xx errors are retried
-    // OBS: We are currently not retrying 500 request, since our core needs proper error handling.
-    //      At the moment, error 500 will be returned on all error, that are not of type MedusaError.
+    // OBS: We are currently not retrying 500 requests, since our core needs proper error handling.
+    //      At the moment, 500 will be returned on all errors, that are not of type MedusaError.
     if (err.response.status > 500 && err.response.status <= 599) {
       return true;
     }
@@ -87,7 +87,7 @@ class Client {
   }
 
   /**
-   * Create all the initial headers.
+   * Creates all the initial headers.
    * We add the idempotency key, if the request is configured to retry.
    * @param config user supplied configurations
    * @returns AxiosInstance
@@ -108,7 +108,7 @@ class Client {
   }
 
   /**
-   * Create the axios client used for requests
+   * Creates the axios client used for requests
    * As part of the creation, we configure the retry conditions
    * and the exponential backoff approach.
    * @param config user supplied configurations
@@ -139,7 +139,7 @@ class Client {
    *  { cart: { id: "some_cart", ... } }
    * Instead of:
    *  { id: "some_cart" }
-   * Emit `raw` from request options to achieve last mentioned.
+   * Omit `raw` from request options to achieve last mentioned (this is default).
    * @param data Axios response data
    * @param status Axios response status code
    * @returns The raw response
