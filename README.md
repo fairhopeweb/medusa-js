@@ -33,7 +33,7 @@ const medusa = new Medusa('pk_...');
 const cart = await medusa.carts.create({});
 
 // Raw formatting
-const cart = await medusa.carts.create({}, { raw: true });
+const { cart } = await medusa.carts.create({}, { raw: true });
 ```
 
 ## Configuration
