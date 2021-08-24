@@ -137,9 +137,6 @@ class Client {
   /**
    * Format the response data as:
    *  { cart: { id: "some_cart", ... } }
-   * Instead of:
-   *  { id: "some_cart" }
-   * Omit `raw` from request options to achieve last mentioned (this is default).
    * @param data Axios response data
    * @param status Axios response status code
    * @returns The raw response
@@ -165,12 +162,7 @@ class Client {
 
     const { data, status, headers } = await this.axiosClient(reqOpts);
 
-    if (options?.raw) {
-      return this.createRawResponse(data, status);
-    } else {
-      const val = Object.values(data)[0];
-      return val;
-    }
+    return this.createRawResponse(data, status);
   }
 }
 

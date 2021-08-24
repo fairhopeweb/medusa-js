@@ -1,6 +1,5 @@
 export interface RequestOptions {
   idempotency_key?: string;
-  raw?: boolean;
 }
 
 export type Response<T> = T & {
