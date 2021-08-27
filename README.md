@@ -29,11 +29,7 @@ import Medusa from '@medusajs/medusa-js';
 
 const medusa = new Medusa('pk_...');
 
-// Default formatting
-const cart = await medusa.carts.create({});
-
-// Raw formatting
-const { cart } = await medusa.carts.create({}, { raw: true });
+const { cart } = await medusa.carts.create({});
 ```
 
 ## Configuration
@@ -44,7 +40,7 @@ The package can be initialized with several options:
 
 ```js
 const medusa = new Medusa('sk_...', {
-  maxRetries: 1,
+  maxRetries: 3,
   baseUrl: 'https://api.example.com',
 });
 ```

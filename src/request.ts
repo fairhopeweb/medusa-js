@@ -104,7 +104,7 @@ class Client {
       defaultHeaders['Idempotency-Key'] = uuidv4();
     }
 
-    return Object.assign(defaultHeaders, this.normalizeHeaders(userHeaders));
+    return Object.assign({}, defaultHeaders, this.normalizeHeaders(userHeaders));
   }
 
   /**
