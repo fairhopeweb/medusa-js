@@ -93,3 +93,8 @@ export interface ProductTag {
   deleted_at?: Date;
   metadata?: JSON;
 }
+
+export interface ProductListPayload {
+  limit?: number;
+  offset?: number;
+}
