@@ -6,7 +6,7 @@ export interface ProductVariant {
   title: string;
   product_id: string;
   product: Product;
-  prices: MoneyAmount;
+  prices: MoneyAmount[];
   sku?: string;
   barcase?: string;
   ean?: string;
