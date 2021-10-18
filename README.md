@@ -20,14 +20,14 @@ yarn add @medusajs/medusa-js
 
 ## Usage
 
-The SDK needs to be configured with a publishable key from an environment. These are available in your environment settings in [Medusa Cloud](https://app.medusa-commerce.com)
+The SDK can be configured with a secret key from your store (Coming soon!).
 
 Import Medusa as a default import and initiate it:
 
 ```js
 import Medusa from '@medusajs/medusa-js';
 
-const medusa = new Medusa('pk_...');
+const medusa = new Medusa();
 
 const { cart } = await medusa.carts.create({});
 ```
@@ -39,7 +39,7 @@ const { cart } = await medusa.carts.create({});
 The package can be initialized with several options:
 
 ```js
-const medusa = new Medusa('sk_...', {
+const medusa = new Medusa({
   maxRetries: 3,
   baseUrl: 'https://api.example.com',
 });
@@ -48,4 +48,5 @@ const medusa = new Medusa('sk_...', {
 | Option       | Default                             | Description                               |
 | ------------ | ----------------------------------- | ----------------------------------------- |
 | `maxRetries` | `0`                                 | The amount of times a request is retried. |
-| `baseUrl`    | `'https://api.medusa-commerce.com'` | The url to which requests are made to     |
+| `baseUrl`    | `'http://localhost:9000'`           | The url to which requests are made to     |
+| `secretKey`  | `null`                              | Secret key to use for authenticated routes    |

@@ -1,20 +1,20 @@
-import BaseResource from './base';
-import * as Types from '../types';
-import { RequestOptions } from '../types';
+import BaseResource from "./base"
+import * as Types from "../types"
+import { RequestOptions } from "../types"
 
 class ReturnsResource extends BaseResource {
   /**
    * Creates a return request
    * @param payload details needed to create a return
-   * @returns AsyncResult<{ return: Return }>
+   * @return AsyncResult<{ return: Return }>
    */
   create(
     payload: Types.ReturnCreateResource,
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ return: Types.Return }> {
-    const path = `/store/returns`;
-    return this.client.request('GET', path, {}, options);
+    const path = `/store/returns`
+    return this.client.request("GET", path, {}, options)
   }
 }
 
-export default ReturnsResource;
+export default ReturnsResource

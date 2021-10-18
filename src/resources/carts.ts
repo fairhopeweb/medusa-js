@@ -1,24 +1,24 @@
-import BaseResource from './base';
-import LineItemsResource from './line-items';
-import * as Types from '../types';
-import { CompleteCartResponse, RequestOptions } from '../types';
+import BaseResource from "./base"
+import LineItemsResource from "./line-items"
+import * as Types from "../types"
+import { CompleteCartResponse, RequestOptions } from "../types"
 
 class CartsResource extends BaseResource {
-  public lineItems = new LineItemsResource(this.client);
+  public lineItems = new LineItemsResource(this.client)
 
   /**
    * Adds a shipping method to cart
    * @param cart_id Id of cart
    * @param payload Containg id of shipping option and optional data
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
   addShippingMethod(
     cart_id: string,
     payload: Types.ShippingOption,
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/shipping-methods`;
-    return this.client.request('POST', path, payload, options);
+    const path = `/store/carts/${cart_id}/shipping-methods`
+    return this.client.request("POST", path, payload, options)
   }
 
   /**
@@ -28,22 +28,28 @@ class CartsResource extends BaseResource {
    * The completion of a cart can be performed idempotently with a provided header Idempotency-Key.
    * If not provided, we will generate one for the request.
    * @param cart_id is required
-   * @returns AsyncResult<CompleteCartResponse>
+   * @return AsyncResult<CompleteCartResponse>
    */
-  complete(cart_id: string, options: RequestOptions = {}): Types.AsyncResult<CompleteCartResponse> {
-    const path = `/store/carts/${cart_id}/complete`;
-    return this.client.request('POST', path, {}, options);
+  complete(
+    cart_id: string,
+    options: RequestOptions = {}
+  ): Types.AsyncResult<CompleteCartResponse> {
+    const path = `/store/carts/${cart_id}/complete`
+    return this.client.request("POST", path, {}, options)
   }
 
   /**
    * Creates a cart
    * @param payload is optional and can contain a region_id and items.
    * The cart will contain the payload, if provided. Otherwise it will be empty
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
-  create(payload?: Types.CartCreateResource, options: RequestOptions = {}): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts`;
-    return this.client.request('POST', path, payload, options);
+  create(
+    payload?: Types.CartCreateResource,
+    options: RequestOptions = {}
+  ): Types.AsyncResult<{ cart: Types.Cart }> {
+    const path = `/store/carts`
+    return this.client.request("POST", path, payload, options)
   }
 
   /**
@@ -51,22 +57,29 @@ class CartsResource extends BaseResource {
    * Initializes the payment sessions that can be used to pay for the items of the cart.
    * This is usually called when a customer proceeds to checkout.
    * @param cart_id is required
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
-  createPaymentSessions(cart_id: string, options: RequestOptions = {}): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/payment-sessions`;
-    return this.client.request('POST', path, {}, options);
+  createPaymentSessions(
+    cart_id: string,
+    options: RequestOptions = {}
+  ): Types.AsyncResult<{ cart: Types.Cart }> {
+    const path = `/store/carts/${cart_id}/payment-sessions`
+    return this.client.request("POST", path, {}, options)
   }
 
   /**
    * Removes a discount from cart.
    * @param cart_id is required
    * @param code discount code to remove
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
-  deleteDiscount(cart_id: string, code: string, options: RequestOptions = {}): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/discounts/${code}`;
-    return this.client.request('DELETE', path, {}, options);
+  deleteDiscount(
+    cart_id: string,
+    code: string,
+    options: RequestOptions = {}
+  ): Types.AsyncResult<{ cart: Types.Cart }> {
+    const path = `/store/carts/${cart_id}/discounts/${code}`
+    return this.client.request("DELETE", path, {}, options)
   }
 
   /**
@@ -74,70 +87,73 @@ class CartsResource extends BaseResource {
    * Can be useful in case a payment has failed
    * @param cart_id is required
    * @param provider_id the provider id of the session e.g. "stripe"
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
   deletePaymentSession(
     cart_id: string,
     provider_id: string,
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`;
-    return this.client.request('DELETE', path, {}, options);
+    const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}`
+    return this.client.request("DELETE", path, {}, options)
   }
 
   /**
    * Refreshes a payment session.
    * @param cart_id is required
    * @param provider_id the provider id of the session e.g. "stripe"
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
   refreshPaymentSession(
     cart_id: string,
     provider_id: string,
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}/refresh`;
-    return this.client.request('POST', path, {}, options);
+    const path = `/store/carts/${cart_id}/payment-sessions/${provider_id}/refresh`
+    return this.client.request("POST", path, {}, options)
   }
 
   /**
    * Retrieves a cart
    * @param cart_id is required
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
-  retrieve(cart_id: string, options: RequestOptions = {}): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}`;
-    return this.client.request('GET', path, {}, options);
+  retrieve(
+    cart_id: string,
+    options: RequestOptions = {}
+  ): Types.AsyncResult<{ cart: Types.Cart }> {
+    const path = `/store/carts/${cart_id}`
+    return this.client.request("GET", path, {}, options)
   }
 
   /**
    * Refreshes a payment session.
    * @param cart_id is required
    * @param payload the provider id of the session e.g. "stripe"
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
   setPaymentSession(
     cart_id: string,
     payload: { provider_id: string },
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/payment-session`;
-    return this.client.request('POST', path, payload, options);
+    const path = `/store/carts/${cart_id}/payment-session`
+    return this.client.request("POST", path, payload, options)
   }
 
   /**
    * Updates a cart
    * @param cart_id is required
    * @param payload is required and can contain region_id, email, billing and shipping address
-   * @returns AsyncResult<{ cart: Cart }>
+   * @return AsyncResult<{ cart: Cart }>
    */
   update(
     cart_id: string,
     payload: Types.CartUpdateResource,
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}`;
-    return this.client.request('POST', path, payload, options);
+    const path = `/store/carts/${cart_id}`
+    return this.client.request("POST", path, payload, options)
   }
 
   /**
@@ -151,11 +167,11 @@ class CartsResource extends BaseResource {
   updatePaymentSession(
     cart_id: string,
     payload: { provider_id: string; data: object },
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Types.AsyncResult<{ cart: Types.Cart }> {
-    const path = `/store/carts/${cart_id}/payment-session/update`;
-    return this.client.request('POST', path, payload, options);
+    const path = `/store/carts/${cart_id}/payment-session/update`
+    return this.client.request("POST", path, payload, options)
   }
 }
 
-export default CartsResource;
+export default CartsResource

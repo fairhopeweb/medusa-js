@@ -1,51 +1,51 @@
-import { Address } from '../address';
-import { Order } from '../order';
+import { Address } from "../address"
+import { Order } from "../order"
 
 export interface Customer {
-  id: string;
-  email: string;
-  first_name?: string;
-  last_name?: string;
-  billing_address_id?: string;
-  billing_address?: Address;
-  shipping_addresses?: Address[];
-  password_hash?: string;
-  phone?: string;
-  has_account: boolean;
-  orders?: Order[];
-  created_at: Date;
-  updated_at: Date;
-  deleted_at?: Date;
-  metadata?: JSON;
+  id: string
+  email: string
+  first_name?: string
+  last_name?: string
+  billing_address_id?: string
+  billing_address?: Address
+  shipping_addresses?: Address[]
+  password_hash?: string
+  phone?: string
+  has_account: boolean
+  orders?: Order[]
+  created_at: Date
+  updated_at: Date
+  deleted_at?: Date
+  metadata?: JSON
 }
 
 export interface CustomerResetPasswordResource {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 export interface CustomerGeneratePasswordTokenResource {
-  email: string;
+  email: string
 }
 
 export interface CustomerCreateResource {
-  email: string;
-  first_name: string;
-  last_name: string;
-  password: string;
-  phone?: string;
+  email: string
+  first_name: string
+  last_name: string
+  password: string
+  phone?: string
 }
 
 export interface CustomerUpdateResource {
-  billing_address?: Address;
-  first_name?: string;
-  last_name?: string;
-  password?: string;
-  phone?: string;
-  metadata?: JSON;
+  billing_address?: Address
+  first_name?: string
+  last_name?: string
+  password?: string
+  phone?: string
+  metadata?: JSON
 }
 
 export interface AuthCreateSessionResource {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }

@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "test": "jest --config jestconfig.json"
   },
   "author": "Oliver Juhl",
@@ -29,6 +29,13 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@babel/eslint-parser": "^7.15.8",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
