@@ -10,7 +10,7 @@ class RegionsResource extends BaseResource {
   list(
     options: RequestOptions = {}
   ): Types.AsyncResult<{ regions: Types.Region[] }> {
-    const path = `/admin/regions`
+    const path = `/store/regions`
     return this.client.request("GET", path, {}, options)
   }
 

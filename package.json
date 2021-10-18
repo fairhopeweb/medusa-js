@@ -1,6 +1,6 @@
 {
   "name": "@medusajs/medusa-js",
-  "version": "1.0.1-canary.1",
+  "version": "1.0.1-canary.2",
   "description": "Client for Medusa Commerce Rest API",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -28,10 +28,10 @@
     "url": "https://github.com/medusajs/medusa-js/issues"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.19",
-    "@typescript-eslint/parser": "^5.0.0",
     "@babel/eslint-parser": "^7.15.8",
+    "@types/jest": "^26.0.19",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.3.0",
